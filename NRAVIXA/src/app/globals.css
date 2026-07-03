@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  /* Clear default spacing scale to enforce DESIGN.md values exclusively */
+  --spacing-*: initial;
+  --spacing-0: 0px;
+  --spacing-px: 1px;
+  
+  /* Strict spacing values from DESIGN.md */
+  --spacing-8: 0.5rem;    /* 8px */
+  --spacing-16: 1rem;     /* 16px */
+  --spacing-24: 1.5rem;   /* 24px */
+  --spacing-32: 2rem;     /* 32px */
+  --spacing-48: 3rem;     /* 48px */
+  --spacing-64: 4rem;     /* 64px */
+  --spacing-96: 6rem;     /* 96px */
+  --spacing-128: 8rem;    /* 128px */
+  --spacing-160: 10rem;   /* 160px */
+
+  /* Custom easing for premium animations */
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+}
