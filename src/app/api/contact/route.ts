@@ -49,7 +49,7 @@ export async function POST(request: Request) {
     const result = contactFormSchema.safeParse(body);
     if (!result.success) {
       return NextResponse.json(
-        { error: "Invalid data provided.", details: result.error.errors },
+        { error: "Invalid data provided.", details: result.error.issues },
         { status: 400 }
       );
     }
