@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { ScrollToTop } from "@/components/ui/ScrollToTop";
+import { BackToHomeGuard } from "@/components/navigation/BackToHomeGuard";
 
 export const metadata: Metadata = {
   title: "NRAVIXA | Premium Technology Studio",
@@ -24,6 +26,8 @@ export default function RootLayout({
         <Navbar />
         <main className="flex-1 flex flex-col">{children}</main>
         <Footer />
+        <ScrollToTop />
+        <BackToHomeGuard />
       </body>
     </html>
   );

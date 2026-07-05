@@ -31,28 +31,32 @@ export function Contact() {
   const onSubmit = async (data: ContactFormData) => {
     setApiError(null);
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.error || "Failed to submit inquiry.");
-      }
+      if (data._gotcha) return;
+      
+      const subject = encodeURIComponent(`New Inquiry from ${data.name}`);
+      const body = encodeURIComponent(
+        `Name: ${data.name}\n` +
+        `Email: ${data.email}\n` +
+        `Phone: ${data.phone || 'N/A'}\n` +
+        `Business Name: ${data.businessName || 'N/A'}`
+      );
+      
+      const mailtoUrl = `mailto:nravixa@gmail.com?subject=${subject}&body=${body}`;
+      const link = document.createElement("a");
+      link.href = mailtoUrl;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
 
       setIsSubmitted(true);
       reset();
       
-      // Reset success state after 5 seconds
       setTimeout(() => {
         setIsSubmitted(false);
       }, 5000);
       
     } catch (error: any) {
-      setApiError(error.message || "A network error occurred. Please try again.");
+      setApiError(error.message || "An error occurred. Please try again.");
     }
   };
 
@@ -61,7 +65,7 @@ export function Contact() {
       <Container>
         <Content>
           {/* Left Card: Contact Info */}
-          <div className="col-span-12 lg:col-span-6 bg-[#fcfcfc] border border-black/10 p-32 md:p-48 flex flex-col justify-between h-full">
+          <div className="col-span-12 lg:col-span-6 bg-[#fffaf3] border border-black/10 p-32 md:p-48 flex flex-col justify-between h-full">
             <div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-black mb-24">
                 Let's create something extraordinary.
@@ -76,23 +80,23 @@ export function Contact() {
                 <span className="text-xs font-semibold tracking-[0.2em] uppercase text-black/40">
                   Direct Contact
                 </span>
-                <span className="text-2xl font-medium tracking-tight text-black">
-                  7420008485
-                </span>
-                <span className="text-2xl font-medium tracking-tight text-black">
+                <a href="tel:+917420008485" className="text-2xl font-medium tracking-tight text-black hover:text-black/60 transition-colors">
+                  +91 7420008485
+                </a>
+                <a href="mailto:nravixa@gmail.com?subject=Project%20Inquiry&body=Hi!%20I%20would%20like%20to%20discuss%20a%20project%20with%20you." className="text-2xl font-medium tracking-tight text-black hover:text-black/60 transition-colors">
                   nravixa@gmail.com
-                </span>
+                </a>
               </div>
 
               <div className="flex flex-wrap gap-16 mt-16">
                 <a
-                  href="tel:7420008485"
+                  href="tel:+917420008485"
                   className="px-24 py-16 border border-black/20 rounded-full text-black font-medium hover:border-black transition-colors duration-300 ease-premium"
                 >
                   Call
                 </a>
                 <a
-                  href="https://wa.me/917420008485"
+                  href="https://wa.me/917420008485?text=Hi!%20%E2%9C%A8%20I%20visited%20your%20website%20and%20I'm%20interested%20in%20building%20a%20creative%2C%20modern%2C%20and%20responsive%20website.%20I'd%20love%20to%20discuss%20my%20project.%20Please%20get%20in%20touch%20with%20me."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-24 py-16 border border-black/20 rounded-full text-black font-medium hover:border-black transition-colors duration-300 ease-premium"
@@ -100,7 +104,7 @@ export function Contact() {
                   WhatsApp
                 </a>
                 <a
-                  href="mailto:nravixa@gmail.com"
+                  href="mailto:nravixa@gmail.com?subject=Project%20Inquiry&body=Hi!%20I%20would%20like%20to%20discuss%20a%20project%20with%20you."
                   className="px-24 py-16 border border-black/20 rounded-full text-black font-medium hover:border-black transition-colors duration-300 ease-premium"
                 >
                   Email
@@ -121,7 +125,7 @@ export function Contact() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-48 h-full justify-center relative">
+              <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-48 h-full justify-center relative" suppressHydrationWarning>
                 <h3 className="text-2xl font-bold tracking-tight text-black mb-16">
                   Send an Inquiry
                 </h3>

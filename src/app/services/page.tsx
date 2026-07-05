@@ -1,6 +1,8 @@
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { Content } from "@/components/layout/Content";
+import { ExpandableCardText } from "@/components/ui/ExpandableCardText";
+import { ScrollVelocity } from "@/components/ui/ScrollVelocity";
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -55,10 +57,7 @@ const features = [
   "Lifetime Support Guidance",
 ];
 
-const technologies = [
-  "HTML", "CSS", "JavaScript", "React", "Next.js", "Node.js", 
-  "Express", "MongoDB", "WordPress", "Firebase", "Tailwind CSS"
-];
+
 
 export default function ServicesPage() {
   return (
@@ -113,7 +112,7 @@ export default function ServicesPage() {
               {offerings.map((offer, index) => (
                 <div
                   key={offer.title}
-                  className="bg-[#f9f9f9] p-48 transition-all duration-300 ease-premium hover:-translate-y-4 hover:shadow-xl group"
+                  className="bg-[#fffaf3] p-48 transition-all duration-300 ease-premium hover:-translate-y-4 hover:shadow-xl group"
                 >
                   <span className="text-sm font-medium text-black/40 group-hover:text-black/60 transition-colors duration-300 mb-32 block">
                     0{index + 1}
@@ -121,9 +120,11 @@ export default function ServicesPage() {
                   <h3 className="text-2xl font-bold tracking-tight text-black mb-16">
                     {offer.title}
                   </h3>
-                  <p className="text-black/60 leading-relaxed">
-                    {offer.desc}
-                  </p>
+                  <ExpandableCardText>
+                    <p className="text-black/60 leading-relaxed">
+                      {offer.desc}
+                    </p>
+                  </ExpandableCardText>
                 </div>
               ))}
             </div>
@@ -135,43 +136,23 @@ export default function ServicesPage() {
       <Section className="bg-[#111] text-white py-96 md:py-160">
         <Container>
           <Content>
-            <div className="col-span-12 md:col-span-5 mb-64 md:mb-0">
+            <div className="col-span-12 flex flex-col items-center text-center">
               <span className="text-xs font-semibold tracking-[0.2em] uppercase text-white/40 mb-16 block">
                 The Advantage
               </span>
               <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-48">
                 Why Choose Us?
               </h2>
-              <ul className="flex flex-col gap-24">
-                {features.map((feature) => (
-                  <li key={feature} className="flex items-center gap-16">
-                    <div className="w-24 h-24 rounded-full bg-white/10 flex items-center justify-center shrink-0">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                      </svg>
-                    </div>
-                    <span className="text-lg text-white/80">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="col-span-12 md:col-span-6 md:col-start-7 flex flex-col justify-center">
-              <span className="text-xs font-semibold tracking-[0.2em] uppercase text-white/40 mb-16 block mt-64 md:mt-0">
-                Stack
-              </span>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-48">
-                Technologies
-              </h2>
-              <div className="flex flex-wrap gap-16">
-                {technologies.map((tech) => (
-                  <span 
-                    key={tech} 
-                    className="px-24 py-16 bg-white/5 border border-white/10 rounded-full text-white/70 hover:bg-white/10 transition-colors duration-300"
-                  >
-                    {tech}
-                  </span>
-                ))}
+              <div className="w-full mt-32">
+                <ScrollVelocity 
+                  texts={[
+                    features.slice(0, 4).join("  •  "),
+                    features.slice(4).join("  •  ")
+                  ]} 
+                  className="text-white/80 px-32"
+                  velocity={80}
+                  numCopies={4}
+                />
               </div>
             </div>
           </Content>

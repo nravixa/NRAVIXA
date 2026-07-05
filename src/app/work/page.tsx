@@ -1,6 +1,8 @@
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { Content } from "@/components/layout/Content";
+import { CountUp } from "@/components/ui/CountUp";
+import { ExpandableCardText } from "@/components/ui/ExpandableCardText";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -41,10 +43,10 @@ const processSteps = [
 ];
 
 const stats = [
-  { value: "50+", label: "Projects Completed" },
-  { value: "20+", label: "Happy Clients" },
-  { value: "99%", label: "Client Satisfaction" },
-  { value: "100%", label: "Responsive Websites" },
+  { value: 50, suffix: "+", label: "Projects Completed" },
+  { value: 20, suffix: "+", label: "Happy Clients" },
+  { value: 99, suffix: "%", label: "Client Satisfaction" },
+  { value: 100, suffix: "%", label: "Responsive Websites" },
 ];
 
 export default function WorkPage() {
@@ -86,16 +88,18 @@ export default function WorkPage() {
               {projects.map((project) => (
                 <div
                   key={project.title}
-                  className="group bg-white p-48 border border-black/10 transition-all duration-300 ease-premium hover:border-black hover:-translate-y-4 hover:shadow-xl flex flex-col justify-between"
+                  className="group bg-[#fffaf3] p-48 border border-black/10 transition-all duration-300 ease-premium hover:border-black hover:-translate-y-4 hover:shadow-xl flex flex-col justify-between"
                 >
                   <div className="w-12 h-12 bg-black rounded-full mb-64 transition-transform duration-300 group-hover:scale-150 origin-bottom-left" />
                   <div>
                     <h3 className="text-2xl font-bold tracking-tight text-black mb-16">
                       {project.title}
                     </h3>
-                    <p className="text-black/60 leading-relaxed">
-                      {project.desc}
-                    </p>
+                    <ExpandableCardText>
+                      <p className="text-black/60 leading-relaxed">
+                        {project.desc}
+                      </p>
+                    </ExpandableCardText>
                   </div>
                 </div>
               ))}
@@ -141,8 +145,9 @@ export default function WorkPage() {
             <div className="col-span-12 grid grid-cols-2 md:grid-cols-4 gap-48 text-center md:text-left">
               {stats.map((stat) => (
                 <div key={stat.label} className="flex flex-col">
-                  <span className="text-5xl md:text-6xl font-bold tracking-tighter mb-16">
-                    {stat.value}
+                  <span className="text-5xl md:text-6xl font-bold tracking-tighter mb-16 flex items-center justify-center md:justify-start">
+                    <CountUp to={stat.value} duration={5} />
+                    <span>{stat.suffix}</span>
                   </span>
                   <span className="text-white/60 font-medium tracking-wide uppercase text-xs">
                     {stat.label}

@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface NavLinksProps {
   mobile?: boolean;
@@ -18,24 +19,36 @@ const links = [
 ];
 
 export function NavLinks({ mobile = false, onClick, isScrolled = false }: NavLinksProps) {
+  const pathname = usePathname();
+
   return (
     <>
-      {links.map((link) => (
-        <Link
-          key={link.name}
-          href={link.href}
-          onClick={onClick}
-          className={`${
-            mobile
-              ? "text-4xl font-medium tracking-tight text-black hover:opacity-70 transition-opacity duration-300 ease-premium"
-              : isScrolled
-                ? "text-sm text-black/70 hover:text-black transition-colors duration-300 ease-premium font-medium"
-                : "text-sm text-white/70 hover:text-white transition-colors duration-300 ease-premium font-medium"
-          }`}
-        >
-          {link.name}
-        </Link>
-      ))}
+      {links.map((link) => {
+        const isActive = pathname === link.href;
+
+        return (
+          <Link
+            key={link.name}
+            href={link.href}
+            onClick={onClick}
+            className={`${
+              mobile
+                ? `text-4xl font-medium tracking-tight transition-colors duration-300 ease-premium ${
+                    isActive ? "text-blue-600" : "text-black hover:text-blue-600"
+                  }`
+                : isScrolled
+                  ? `text-sm font-medium transition-colors duration-300 ease-premium ${
+                      isActive ? "text-blue-600" : "text-black/70 hover:text-blue-600"
+                    }`
+                  : `text-sm font-medium transition-colors duration-300 ease-premium ${
+                      isActive ? "text-blue-400" : "text-white/70 hover:text-blue-400"
+                    }`
+            }`}
+          >
+            {link.name}
+          </Link>
+        );
+      })}
     </>
   );
 }

@@ -5,22 +5,25 @@ import { Content } from "../layout/Content";
 
 const concepts = [
   {
-    title: "Luxury Cafe Concept",
+    title: "Brew & Bloom",
     category: "Concept Project",
     description: "An elegant, highly immersive digital experience designed for high-end boutique coffee shops.",
     alignLeft: true,
+    link: "https://brew-bloom-lime.vercel.app/",
   },
   {
     title: "Modern Restaurant Concept",
     category: "Concept Project",
     description: "A dark-mode, editorial-style reservation and menu platform for Michelin-star dining.",
     alignLeft: false,
+    link: "#",
   },
   {
-    title: "Startup Landing Page Concept",
+    title: "Ashq",
     category: "Concept Project",
     description: "A conversion-focused, typography-driven marketing page for modern tech startups.",
     alignLeft: true,
+    link: "#",
   },
 ];
 
@@ -67,7 +70,9 @@ export function Concepts() {
                   </p>
                   
                   <a
-                    href="#"
+                    href={concept.link}
+                    target={concept.link !== "#" ? "_blank" : undefined}
+                    rel={concept.link !== "#" ? "noopener noreferrer" : undefined}
                     className="inline-flex items-center gap-16 font-medium text-black group/btn"
                   >
                     <span className="relative overflow-hidden">

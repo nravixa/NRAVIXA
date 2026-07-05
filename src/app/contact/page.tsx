@@ -39,11 +39,38 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate API call for now since we're building the UI
+    
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get("name") as string;
+    const email = formData.get("email") as string;
+    const phone = formData.get("phone") as string;
+    const company = formData.get("company") as string;
+    const service = formData.get("service") as string;
+    const budget = formData.get("budget") as string;
+    const message = formData.get("message") as string;
+    
+    const subject = encodeURIComponent(`New Project Inquiry from ${name}`);
+    const body = encodeURIComponent(
+      `Name: ${name}\n` +
+      `Email: ${email}\n` +
+      `Phone: ${phone}\n` +
+      `Company: ${company || 'N/A'}\n` +
+      `Service Required: ${service}\n` +
+      `Budget: ${budget || 'N/A'}\n\n` +
+      `Message:\n${message}`
+    );
+    
+    const mailtoUrl = `mailto:nravixa@gmail.com?subject=${subject}&body=${body}`;
+    const link = document.createElement("a");
+    link.href = mailtoUrl;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitted(true);
-    }, 1500);
+    }, 500);
   };
 
   return (
@@ -80,19 +107,39 @@ export default function ContactPage() {
                 <div className="flex flex-col gap-32">
                   <div>
                     <h4 className="text-sm font-bold tracking-wider text-black/40 uppercase mb-8">Location</h4>
-                    <p className="text-xl font-medium text-black">Pune, Maharashtra, India</p>
+                    <a 
+                      href="https://maps.google.com/?q=Pune,+Maharashtra,+India" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-xl font-medium text-black hover:text-black/60 transition-colors"
+                    >
+                      Pune, Maharashtra, India
+                    </a>
                   </div>
                   <div>
                     <h4 className="text-sm font-bold tracking-wider text-black/40 uppercase mb-8">Email</h4>
-                    <a href="mailto:nravixa@gmail.com" className="text-xl font-medium text-black hover:text-black/60 transition-colors">
+                    <a href="mailto:nravixa@gmail.com?subject=Project%20Inquiry&body=Hi!%20I%20would%20like%20to%20discuss%20a%20project%20with%20you." className="text-xl font-medium text-black hover:text-black/60 transition-colors">
                       nravixa@gmail.com
                     </a>
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold tracking-wider text-black/40 uppercase mb-8">Phone</h4>
-                    <a href="tel:+917420008485" className="text-xl font-medium text-black hover:text-black/60 transition-colors">
-                      +91 74200 08485
-                    </a>
+                    <h4 className="text-sm font-bold tracking-wider text-black/40 uppercase mb-16 block">Direct Contact</h4>
+                    <div className="flex flex-wrap gap-16 mt-8">
+                      <a 
+                        href="tel:+917420008485" 
+                        className="inline-flex items-center justify-center px-32 py-16 border border-black/20 rounded-full text-black font-medium hover:border-black transition-colors duration-300 ease-premium"
+                      >
+                        Call Me
+                      </a>
+                      <a 
+                        href="https://wa.me/917420008485?text=Hi!%20%E2%9C%A8%20I%20visited%20your%20website%20and%20I'm%20interested%20in%20building%20a%20creative%2C%20modern%2C%20and%20responsive%20website.%20I'd%20love%20to%20discuss%20my%20project.%20Please%20get%20in%20touch%20with%20me." 
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center px-32 py-16 bg-black border border-black rounded-full text-white font-medium hover:bg-black/80 transition-colors duration-300 ease-premium"
+                      >
+                        WhatsApp
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -128,7 +175,7 @@ export default function ContactPage() {
 
             {/* Right Column: Contact Form */}
             <div className="col-span-12 md:col-span-6 md:col-start-7">
-              <div className="bg-[#f9f9f9] p-32 md:p-64 border border-black/5">
+              <div className="bg-white p-32 md:p-64 border border-black/5">
                 <span className="text-xs font-semibold tracking-[0.2em] uppercase text-black/40 mb-32 block">
                   Get in Touch
                 </span>
@@ -147,28 +194,28 @@ export default function ContactPage() {
                   <form onSubmit={handleSubmit} className="flex flex-col gap-32">
                     <div className="flex flex-col gap-8">
                       <label htmlFor="name" className="text-sm font-medium text-black">Full Name *</label>
-                      <input required type="text" id="name" className="w-full bg-transparent border-b border-black/20 pb-16 pt-8 focus:border-black outline-none transition-colors rounded-none" placeholder="John Doe" />
+                      <input required type="text" id="name" name="name" className="w-full bg-transparent border-b border-black/20 pb-16 pt-8 focus:border-black outline-none transition-colors rounded-none text-black placeholder:text-black/40" placeholder="John Doe" />
                     </div>
 
                     <div className="flex flex-col gap-8">
                       <label htmlFor="email" className="text-sm font-medium text-black">Email Address *</label>
-                      <input required type="email" id="email" className="w-full bg-transparent border-b border-black/20 pb-16 pt-8 focus:border-black outline-none transition-colors rounded-none" placeholder="john@example.com" />
+                      <input required type="email" id="email" name="email" className="w-full bg-transparent border-b border-black/20 pb-16 pt-8 focus:border-black outline-none transition-colors rounded-none text-black placeholder:text-black/40" placeholder="john@example.com" />
                     </div>
 
                     <div className="flex flex-col gap-8">
                       <label htmlFor="phone" className="text-sm font-medium text-black">Phone Number *</label>
-                      <input required type="tel" id="phone" className="w-full bg-transparent border-b border-black/20 pb-16 pt-8 focus:border-black outline-none transition-colors rounded-none" placeholder="+1 (555) 000-0000" />
+                      <input required type="tel" id="phone" name="phone" className="w-full bg-transparent border-b border-black/20 pb-16 pt-8 focus:border-black outline-none transition-colors rounded-none text-black placeholder:text-black/40" placeholder="+1 (555) 000-0000" />
                     </div>
 
                     <div className="flex flex-col gap-8">
                       <label htmlFor="company" className="text-sm font-medium text-black">Company Name (Optional)</label>
-                      <input type="text" id="company" className="w-full bg-transparent border-b border-black/20 pb-16 pt-8 focus:border-black outline-none transition-colors rounded-none" placeholder="Your Company" />
+                      <input type="text" id="company" name="company" className="w-full bg-transparent border-b border-black/20 pb-16 pt-8 focus:border-black outline-none transition-colors rounded-none text-black placeholder:text-black/40" placeholder="Your Company" />
                     </div>
 
                     <div className="flex flex-col gap-8">
                       <label htmlFor="service" className="text-sm font-medium text-black">Service Required *</label>
-                      <select required id="service" className="w-full bg-transparent border-b border-black/20 pb-16 pt-8 focus:border-black outline-none transition-colors rounded-none appearance-none">
-                        <option value="" disabled selected>Select a service</option>
+                      <select required id="service" name="service" defaultValue="" className="w-full bg-transparent border-b border-black/20 pb-16 pt-8 focus:border-black outline-none transition-colors rounded-none appearance-none text-black">
+                        <option value="" disabled>Select a service</option>
                         <option value="website-design">Website Design</option>
                         <option value="website-development">Website Development</option>
                         <option value="ecommerce">E-Commerce Development</option>
@@ -179,12 +226,12 @@ export default function ContactPage() {
 
                     <div className="flex flex-col gap-8">
                       <label htmlFor="budget" className="text-sm font-medium text-black">Project Budget (Optional)</label>
-                      <input type="text" id="budget" className="w-full bg-transparent border-b border-black/20 pb-16 pt-8 focus:border-black outline-none transition-colors rounded-none" placeholder="$5k - $10k" />
+                      <input type="text" id="budget" name="budget" className="w-full bg-transparent border-b border-black/20 pb-16 pt-8 focus:border-black outline-none transition-colors rounded-none text-black placeholder:text-black/40" placeholder="$5k - $10k" />
                     </div>
 
                     <div className="flex flex-col gap-8">
                       <label htmlFor="message" className="text-sm font-medium text-black">Message *</label>
-                      <textarea required id="message" rows={4} className="w-full bg-transparent border-b border-black/20 pb-16 pt-8 focus:border-black outline-none transition-colors resize-none rounded-none" placeholder="Tell us about your project..."></textarea>
+                      <textarea required id="message" name="message" rows={4} className="w-full bg-transparent border-b border-black/20 pb-16 pt-8 focus:border-black outline-none transition-colors resize-none rounded-none text-black placeholder:text-black/40" placeholder="Tell us about your project..."></textarea>
                     </div>
 
                     <button
@@ -221,7 +268,7 @@ export default function ContactPage() {
                   Start Your Project
                 </button>
                 <a
-                  href="https://wa.me/917420008485"
+                  href="https://wa.me/917420008485?text=Hi!%20%E2%9C%A8%20I%20visited%20your%20website%20and%20I'm%20interested%20in%20building%20a%20creative%2C%20modern%2C%20and%20responsive%20website.%20I'd%20love%20to%20discuss%20my%20project.%20Please%20get%20in%20touch%20with%20me."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-48 py-24 bg-transparent text-white border border-white/30 rounded-full font-medium text-lg hover:bg-white/10 transition-all duration-300 ease-premium"

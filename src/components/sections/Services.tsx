@@ -29,7 +29,7 @@ export function Services() {
             {services.map((service, index) => (
               <div
                 key={service}
-                className="bg-white p-32 border border-black/10 transition-all duration-300 ease-premium hover:border-black hover:-translate-y-[2px] hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] group"
+                className="bg-[#fffaf3] p-32 border border-black/10 transition-all duration-300 ease-premium hover:border-black hover:-translate-y-[2px] hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] group"
               >
                 <div className="flex flex-col h-full justify-between gap-64">
                   {/* Editorial Numbering */}

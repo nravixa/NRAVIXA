@@ -69,7 +69,7 @@ export function Navbar() {
           {/* Right: WhatsApp Button */}
           <div className="hidden md:flex items-center gap-16">
             <a
-              href="https://wa.me/917420008485?text=Hi!%20%F0%9F%91%8B%20I%20visited%20your%20website%20and%20I'm%20interested%20in%20building%20a%20creative%2C%20modern%2C%20and%20responsive%20website.%20I'd%20love%20to%20discuss%20my%20project.%20Please%20get%20in%20touch%20with%20me."
+              href="https://wa.me/917420008485?text=Hi!%20%E2%9C%A8%20I%20visited%20your%20website%20and%20I'm%20interested%20in%20building%20a%20creative%2C%20modern%2C%20and%20responsive%20website.%20I'd%20love%20to%20discuss%20my%20project.%20Please%20get%20in%20touch%20with%20me."
               target="_blank"
               rel="noopener noreferrer"
               className={`inline-flex items-center justify-center px-24 py-8 text-sm font-medium rounded-full transition-colors duration-300 ease-premium ${
