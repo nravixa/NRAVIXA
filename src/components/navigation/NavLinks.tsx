@@ -10,6 +10,7 @@ interface NavLinksProps {
 }
 
 const links = [
+  { name: "Home", href: "/" },
   { name: "Services", href: "/services" },
   { name: "Work", href: "/work" },
   { name: "About", href: "/about" },

@@ -4,20 +4,14 @@ import { Content } from "@/components/layout/Content";
 import { Services } from "@/components/sections/Services";
 import { Concepts } from "@/components/sections/Concepts";
 import { Contact } from "@/components/sections/Contact";
+import { HeroVideo } from "@/components/ui/HeroVideo";
 
 export default function Home() {
   return (
     <>
       <Section id="hero" className="min-h-screen flex items-center py-96 md:py-160 relative overflow-hidden">
         {/* Background Video */}
-        <video 
-          autoPlay 
-          loop 
-          muted 
-          playsInline 
-          className="absolute inset-0 w-full h-full object-cover -z-10"
-          src="/videos/Snowflakes.mp4"
-        />
+        <HeroVideo />
         {/* Subtle dark overlay for readability if needed */}
         <div className="absolute inset-0 bg-black/40 -z-10" />
 
