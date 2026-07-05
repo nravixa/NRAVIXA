@@ -70,7 +70,7 @@ export const ScrollVelocity = ({
       velocityMapping?.input || [0, 1000],
       velocityMapping?.output || [0, 5],
       { clamp: false }
-    );
+    ) as any;
 
     const copyRef = useRef<HTMLElement | null>(null);
     const copyWidth = useElementWidth(copyRef);

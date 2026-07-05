@@ -63,7 +63,7 @@ export function CountUp({
 
   useEffect(() => {
     if (ref.current) {
-      ref.current.textContent = formatValue(direction === 'down' ? to : from);
+      ref.current.textContent = formatValue(Number(direction === 'down' ? to : from));
     }
   }, [from, to, direction, formatValue]);
 
@@ -92,7 +92,7 @@ export function CountUp({
   useEffect(() => {
     const unsubscribe = springValue.on('change', latest => {
       if (ref.current) {
-        ref.current.textContent = formatValue(latest);
+        ref.current.textContent = formatValue(Number(latest));
       }
     });
 
