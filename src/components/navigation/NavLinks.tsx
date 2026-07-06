@@ -33,15 +33,15 @@ export function NavLinks({ mobile = false, onClick, isScrolled = false }: NavLin
             onClick={onClick}
             className={`${
               mobile
-                ? `text-4xl font-medium tracking-tight transition-colors duration-300 ease-premium ${
-                    isActive ? "text-blue-600" : "text-black hover:text-blue-600"
+                ? `text-4xl tracking-tight transition-colors duration-300 ease-premium ${
+                    isActive ? "font-semibold text-black" : "font-medium text-gray-500 hover:text-gray-800"
                   }`
                 : isScrolled
-                  ? `text-sm font-medium transition-colors duration-300 ease-premium ${
-                      isActive ? "text-blue-600" : "text-black/70 hover:text-blue-600"
+                  ? `text-sm transition-colors duration-300 ease-premium ${
+                      isActive ? "font-semibold text-black" : "font-medium text-gray-500 hover:text-gray-800"
                     }`
-                  : `text-sm font-medium transition-colors duration-300 ease-premium ${
-                      isActive ? "text-blue-400" : "text-white/70 hover:text-blue-400"
+                  : `text-sm transition-colors duration-300 ease-premium ${
+                      isActive ? "font-semibold text-white" : "font-medium text-gray-400 hover:text-gray-200"
                     }`
             }`}
           >

@@ -2,13 +2,14 @@ import React from "react";
 import { Container } from "../layout/Container";
 import { Section } from "../layout/Section";
 import { Content } from "../layout/Content";
+import DecayCard from "../ui/DecayCard";
 
 const services = [
-  "Business Websites",
-  "Cafe Websites",
-  "Restaurant Websites",
-  "Landing Pages",
-  "Portfolio Websites",
+  { title: "Business Websites", image: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=600&auto=format&fit=crop" },
+  { title: "Cafe Websites", image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=600&auto=format&fit=crop" },
+  { title: "Restaurant Websites", image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=600&auto=format&fit=crop" },
+  { title: "Landing Pages", image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600&auto=format&fit=crop" },
+  { title: "Portfolio Websites", image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=600&auto=format&fit=crop" },
 ];
 
 export function Services() {
@@ -27,41 +28,24 @@ export function Services() {
 
           <div className="col-span-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-32">
             {services.map((service, index) => (
-              <div
-                key={service}
-                className="bg-[#fffaf3] p-32 border border-black/10 transition-all duration-300 ease-premium hover:border-black hover:-translate-y-[2px] hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] group"
+              <DecayCard
+                key={service.title}
+                width="100%"
+                height="400px"
+                image={service.image}
               >
-                <div className="flex flex-col h-full justify-between gap-64">
-                  {/* Editorial Numbering */}
-                  <span className="text-sm font-medium text-black/40 group-hover:text-black/60 transition-colors duration-300">
+                <div className="flex flex-col h-full justify-between w-full">
+                  <span className="text-sm font-medium text-white/80">
                     0{index + 1}
                   </span>
                   
-                  {/* Service Title & Minimal Arrow */}
                   <div className="flex items-end justify-between">
-                    <h3 className="text-xl md:text-2xl font-semibold tracking-tight text-black max-w-[200px]">
-                      {service}
+                    <h3 className="text-2xl md:text-3xl font-black tracking-tight text-white max-w-[200px] leading-tight">
+                      {service.title}
                     </h3>
-                    <div className="w-[24px] h-[24px] flex items-center justify-center opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-premium">
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M5 12H19M19 12L12 5M19 12L12 19"
-                          stroke="black"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </div>
                   </div>
                 </div>
-              </div>
+              </DecayCard>
             ))}
           </div>
         </Content>

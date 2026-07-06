@@ -43,6 +43,7 @@ export default function ContactPage() {
     const formData = new FormData(e.currentTarget);
     const name = formData.get("name") as string;
     const email = formData.get("email") as string;
+    const countryCode = formData.get("countryCode") as string;
     const phone = formData.get("phone") as string;
     const company = formData.get("company") as string;
     const service = formData.get("service") as string;
@@ -53,7 +54,7 @@ export default function ContactPage() {
     const body = encodeURIComponent(
       `Name: ${name}\n` +
       `Email: ${email}\n` +
-      `Phone: ${phone}\n` +
+      `Phone: ${countryCode} ${phone}\n` +
       `Company: ${company || 'N/A'}\n` +
       `Service Required: ${service}\n` +
       `Budget: ${budget || 'N/A'}\n\n` +
@@ -204,7 +205,24 @@ export default function ContactPage() {
 
                     <div className="flex flex-col gap-8">
                       <label htmlFor="phone" className="text-sm font-medium text-black">Phone Number *</label>
-                      <input required type="tel" id="phone" name="phone" className="w-full bg-transparent border-b border-black/20 pb-16 pt-8 focus:border-black outline-none transition-colors rounded-none text-black placeholder:text-black/40" placeholder="+1 (555) 000-0000" />
+                      <div className="flex w-full border-b border-black/20 pb-16 pt-8 focus-within:border-black transition-colors rounded-none">
+                        <select
+                          name="countryCode"
+                          id="countryCode"
+                          className="bg-transparent border-none outline-none text-black pr-8 font-medium cursor-pointer"
+                          defaultValue="+91"
+                        >
+                          <option value="+1">+1 (US)</option>
+                          <option value="+44">+44 (UK)</option>
+                          <option value="+91">+91 (IN)</option>
+                          <option value="+61">+61 (AU)</option>
+                          <option value="+81">+81 (JP)</option>
+                          <option value="+49">+49 (DE)</option>
+                          <option value="+33">+33 (FR)</option>
+                          <option value="+971">+971 (AE)</option>
+                        </select>
+                        <input required type="tel" id="phone" name="phone" className="w-full bg-transparent border-none outline-none text-black placeholder:text-black/40 pl-8 border-l border-black/20" placeholder="(555) 000-0000" />
+                      </div>
                     </div>
 
                     <div className="flex flex-col gap-8">

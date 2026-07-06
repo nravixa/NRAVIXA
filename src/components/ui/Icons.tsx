@@ -40,7 +40,7 @@ export const Icons = {
       <circle cx="4" cy="4" r="2" />
     </svg>
   ),
-  Reddit: (props: React.SVGProps<SVGSVGElement>) => (
+  Facebook: (props: React.SVGProps<SVGSVGElement>) => (
     <svg
       viewBox="0 0 24 24"
       fill="none"
@@ -50,10 +50,7 @@ export const Icons = {
       strokeLinejoin="round"
       {...props}
     >
-      <circle cx="12" cy="12" r="10" />
-      <path d="M12 8v4l3 3" />
-      <path d="M8.5 12.5a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" />
-      <path d="M15.5 12.5a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" />
+      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
     </svg>
   ),
   Threads: (props: React.SVGProps<SVGSVGElement>) => (

@@ -22,6 +22,7 @@ export function Contact() {
     defaultValues: {
       name: "",
       email: "",
+      countryCode: "+91",
       phone: "",
       businessName: "",
       _gotcha: "",
@@ -37,7 +38,7 @@ export function Contact() {
       const body = encodeURIComponent(
         `Name: ${data.name}\n` +
         `Email: ${data.email}\n` +
-        `Phone: ${data.phone || 'N/A'}\n` +
+        `Phone: ${data.countryCode} ${data.phone || 'N/A'}\n` +
         `Business Name: ${data.businessName || 'N/A'}`
       );
       
@@ -65,7 +66,7 @@ export function Contact() {
       <Container>
         <Content>
           {/* Left Card: Contact Info */}
-          <div className="col-span-12 lg:col-span-6 bg-[#fffaf3] border border-black/10 p-32 md:p-48 flex flex-col justify-between h-full">
+          <div className="col-span-12 lg:col-span-6 bg-white border border-black/10 p-32 md:p-48 flex flex-col justify-between h-full">
             <div>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-black mb-24">
                 Let's create something extraordinary.
@@ -183,16 +184,32 @@ export function Contact() {
                   {/* Phone Field */}
                   <div className="relative flex flex-col">
                     <label htmlFor="phone" className="sr-only">Phone Number</label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      placeholder="Phone Number *"
-                      {...register("phone")}
-                      disabled={isSubmitting}
-                      className={`w-full bg-transparent border-b py-16 text-lg text-black placeholder-black/30 focus:outline-none focus:border-black transition-colors duration-300 ease-premium disabled:opacity-50 ${
-                        errors.phone ? "border-red-500" : "border-black/20"
-                      }`}
-                    />
+                    <div className={`flex w-full border-b py-16 transition-colors duration-300 ease-premium ${
+                      errors.phone ? "border-red-500" : "border-black/20 focus-within:border-black"
+                    }`}>
+                      <select
+                        {...register("countryCode")}
+                        className="bg-transparent border-none outline-none text-lg text-black pr-8 font-medium cursor-pointer"
+                        disabled={isSubmitting}
+                      >
+                        <option value="+1">+1 (US)</option>
+                        <option value="+44">+44 (UK)</option>
+                        <option value="+91">+91 (IN)</option>
+                        <option value="+61">+61 (AU)</option>
+                        <option value="+81">+81 (JP)</option>
+                        <option value="+49">+49 (DE)</option>
+                        <option value="+33">+33 (FR)</option>
+                        <option value="+971">+971 (AE)</option>
+                      </select>
+                      <input
+                        type="tel"
+                        id="phone"
+                        placeholder="Phone Number *"
+                        {...register("phone")}
+                        disabled={isSubmitting}
+                        className="w-full bg-transparent border-none outline-none text-lg text-black placeholder-black/30 pl-8 border-l border-black/20 disabled:opacity-50"
+                      />
+                    </div>
                     {errors.phone && (
                       <span className="absolute -bottom-24 left-0 text-sm text-red-500">
                         {errors.phone.message}
