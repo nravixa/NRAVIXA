@@ -146,7 +146,7 @@ export default function WorkPage() {
               {stats.map((stat) => (
                 <div key={stat.label} className="flex flex-col">
                   <span className="text-5xl md:text-6xl font-bold tracking-tighter mb-16 flex items-center justify-center md:justify-start">
-                    <CountUp to={stat.value} duration={5} />
+                    <CountUp to={stat.value} duration={1.5} />
                     <span>{stat.suffix}</span>
                   </span>
                   <span className="text-white/60 font-medium tracking-wide uppercase text-xs">

@@ -244,7 +244,15 @@ export default function ContactPage() {
 
                     <div className="flex flex-col gap-8">
                       <label htmlFor="budget" className="text-sm font-medium text-black">Project Budget (Optional)</label>
-                      <input type="text" id="budget" name="budget" className="w-full bg-transparent border-b border-black/20 pb-16 pt-8 focus:border-black outline-none transition-colors rounded-none text-black placeholder:text-black/40" placeholder="$5k - $10k" />
+                      <select id="budget" name="budget" defaultValue="" className="w-full bg-transparent border-b border-black/20 pb-16 pt-8 focus:border-black outline-none transition-colors rounded-none appearance-none text-black">
+                        <option value="" disabled>Select your budget range</option>
+                        <option value="Less than $1,000">Less than $1,000</option>
+                        <option value="$1,000 - $3,000">$1,000 - $3,000</option>
+                        <option value="$3,000 - $5,000">$3,000 - $5,000</option>
+                        <option value="$5,000 - $10,000">$5,000 - $10,000</option>
+                        <option value="$10,000+">$10,000+</option>
+                        <option value="Not sure yet">Not sure yet</option>
+                      </select>
                     </div>
 
                     <div className="flex flex-col gap-8">

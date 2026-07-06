@@ -56,8 +56,9 @@ export function Contact() {
         setIsSubmitted(false);
       }, 5000);
       
-    } catch (error: any) {
-      setApiError(error.message || "An error occurred. Please try again.");
+    } catch (error) {
+      const errMessage = error instanceof Error ? error.message : "An error occurred. Please try again.";
+      setApiError(errMessage);
     }
   };
 
