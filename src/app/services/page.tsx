@@ -1,7 +1,7 @@
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { Content } from "@/components/layout/Content";
-import { ExpandableCardText } from "@/components/ui/ExpandableCardText";
+import { FlipCard } from "@/components/ui/FlipCard";
 import { ScrollVelocity } from "@/components/ui/ScrollVelocity";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -110,22 +110,14 @@ export default function ServicesPage() {
             
             <div className="col-span-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-32">
               {offerings.map((offer, index) => (
-                <div
+                <FlipCard
                   key={offer.title}
-                  className="bg-[#fffaf3] p-48 transition-all duration-300 ease-premium hover:-translate-y-4 hover:shadow-xl group"
-                >
-                  <span className="text-sm font-medium text-black/40 group-hover:text-black/60 transition-colors duration-300 mb-32 block">
-                    0{index + 1}
-                  </span>
-                  <h3 className="text-2xl font-bold tracking-tight text-black mb-16">
-                    {offer.title}
-                  </h3>
-                  <ExpandableCardText>
-                    <p className="text-black/60 leading-relaxed">
-                      {offer.desc}
-                    </p>
-                  </ExpandableCardText>
-                </div>
+                  index={index}
+                  title={offer.title}
+                  frontText=""
+                  backTitle={offer.title}
+                  backText={offer.desc}
+                />
               ))}
             </div>
           </Content>

@@ -2,8 +2,14 @@ import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { Content } from "@/components/layout/Content";
 import { CountUp } from "@/components/ui/CountUp";
-import { ExpandableCardText } from "@/components/ui/ExpandableCardText";
+import { ProjectCard } from "@/components/ui/ProjectCard";
 import type { Metadata } from "next";
+
+import businessWebsiteImg from "@/components/images/business-website.jpg";
+import portfolioImg from "@/components/images/portfolio.jpg";
+import ecommerceImg from "@/components/images/e-commerce.jpeg";
+import landingPageImg from "@/components/images/landing-page.jpg";
+import webAppImg from "@/components/images/web-application.jpeg";
 
 export const metadata: Metadata = {
   title: "Work | NRAVIXA",
@@ -14,22 +20,27 @@ const projects = [
   {
     title: "Corporate Websites",
     desc: "Professional business websites designed to establish credibility and generate leads.",
+    image: businessWebsiteImg.src,
   },
   {
     title: "Portfolio Websites",
     desc: "Personal branding websites for developers, designers, photographers, and professionals.",
+    image: portfolioImg.src,
   },
   {
     title: "E-Commerce Stores",
     desc: "Secure online shopping platforms with payment integration and product management.",
+    image: ecommerceImg.src,
   },
   {
     title: "Startup Landing Pages",
     desc: "High-converting landing pages built to launch products and attract customers.",
+    image: landingPageImg.src,
   },
   {
     title: "Custom Web Applications",
     desc: "Tailored solutions built specifically around your business workflow and requirements.",
+    image: webAppImg.src,
   },
 ];
 
@@ -83,25 +94,15 @@ export default function WorkPage() {
                 Featured Projects
               </h2>
             </div>
-            
+
             <div className="col-span-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-32">
               {projects.map((project) => (
-                <div
+                <ProjectCard
                   key={project.title}
-                  className="group bg-[#fffaf3] p-48 border border-black/10 transition-all duration-300 ease-premium hover:border-black hover:-translate-y-4 hover:shadow-xl flex flex-col justify-between"
-                >
-                  <div className="w-12 h-12 bg-black rounded-full mb-64 transition-transform duration-300 group-hover:scale-150 origin-bottom-left" />
-                  <div>
-                    <h3 className="text-2xl font-bold tracking-tight text-black mb-16">
-                      {project.title}
-                    </h3>
-                    <ExpandableCardText>
-                      <p className="text-black/60 leading-relaxed">
-                        {project.desc}
-                      </p>
-                    </ExpandableCardText>
-                  </div>
-                </div>
+                  title={project.title}
+                  description={project.desc}
+                  image={project.image}
+                />
               ))}
             </div>
           </Content>

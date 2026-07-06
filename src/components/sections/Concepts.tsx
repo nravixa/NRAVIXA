@@ -3,6 +3,8 @@ import { Container } from "../layout/Container";
 import { Section } from "../layout/Section";
 import { Content } from "../layout/Content";
 import brewCafeImg from "../images/brew-cafe.jpeg";
+import modernHotelImg from "../images/modern-hotel.jpeg";
+import ashqImg from "../images/Ashq.jpeg";
 
 const concepts = [
   {
@@ -19,7 +21,7 @@ const concepts = [
     description: "A dark-mode, editorial-style reservation and menu platform for Michelin-star dining.",
     alignLeft: false,
     link: "#",
-    image: "",
+    image: modernHotelImg.src,
   },
   {
     title: "Ashq",
@@ -27,7 +29,7 @@ const concepts = [
     description: "A conversion-focused, typography-driven marketing page for modern tech startups.",
     alignLeft: true,
     link: "#",
-    image: "",
+    image: ashqImg.src,
   },
 ];
 

@@ -18,8 +18,13 @@ export function BackToHomeGuard() {
 
     const handlePopState = (event: PopStateEvent) => {
       // User swiped back or clicked the browser back button.
-      // Redirect them to the home page immediately.
-      router.push("/");
+      // Scroll to the top of the current page.
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      
+      // We push state again so the next back action ALSO scrolls to top if they want to?
+      // Actually, standard behavior allows them to go back to the previous page if they hit back again.
+      // If we want it to always stay on this page and scroll to top, we push state again:
+      window.history.pushState({ isGuard: true }, "", window.location.href);
     };
 
     window.addEventListener("popstate", handlePopState);

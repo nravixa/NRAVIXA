@@ -26,28 +26,24 @@ export function NavLinks({ mobile = false, onClick, isScrolled = false }: NavLin
       {links.map((link) => {
         const isActive = pathname === link.href;
 
-        return (
-          <Link
-            key={link.name}
-            href={link.href}
-            onClick={onClick}
-            className={`${
-              mobile
-                ? `text-4xl tracking-tight transition-colors duration-300 ease-premium ${
-                    isActive ? "font-semibold text-black" : "font-medium text-gray-500 hover:text-gray-800"
-                  }`
-                : isScrolled
-                  ? `text-sm transition-colors duration-300 ease-premium ${
-                      isActive ? "font-semibold text-black" : "font-medium text-gray-500 hover:text-gray-800"
-                    }`
-                  : `text-sm transition-colors duration-300 ease-premium ${
-                      isActive ? "font-semibold text-white" : "font-medium text-gray-400 hover:text-gray-200"
-                    }`
-            }`}
-          >
-            {link.name}
-          </Link>
-        );
+      return (
+      <Link
+        key={link.name}
+        href={link.href}
+        onClick={onClick}
+        className={`${mobile
+            ? `text-4xl tracking-tight transition-colors duration-300 ease-premium ${isActive ? "font-semibold text-black" : "font-medium text-gray-500 hover:text-gray-800"
+            }`
+            : isScrolled
+              ? `text-sm transition-colors duration-300 ease-premium ${isActive ? "font-semibold text-black" : "font-medium text-gray-500 hover:text-gray-800"
+              }`
+              : `text-sm transition-colors duration-300 ease-premium ${isActive ? "font-semibold text-white" : "font-medium text-gray-400 hover:text-gray-200"
+              }`
+          }`}
+      >
+        {link.name}
+      </Link>
+      );
       })}
     </>
   );

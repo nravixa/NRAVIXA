@@ -209,10 +209,10 @@ export default function ContactPage() {
                         <select
                           name="countryCode"
                           id="countryCode"
-                          className="bg-transparent border-none outline-none text-black pr-8 font-medium cursor-pointer"
+                          className="bg-white border-none outline-none text-black pr-8 font-medium cursor-pointer appearance-none md:appearance-auto"
                           defaultValue="+91"
                         >
-                          <option value="+1">+1 (US)</option>
+                          <option value="+1">+1 (US/CA)</option>
                           <option value="+44">+44 (UK)</option>
                           <option value="+91">+91 (IN)</option>
                           <option value="+61">+61 (AU)</option>
@@ -220,6 +220,48 @@ export default function ContactPage() {
                           <option value="+49">+49 (DE)</option>
                           <option value="+33">+33 (FR)</option>
                           <option value="+971">+971 (AE)</option>
+                          <option value="+86">+86 (CN)</option>
+                          <option value="+55">+55 (BR)</option>
+                          <option value="+7">+7 (RU/KZ)</option>
+                          <option value="+39">+39 (IT)</option>
+                          <option value="+34">+34 (ES)</option>
+                          <option value="+82">+82 (KR)</option>
+                          <option value="+52">+52 (MX)</option>
+                          <option value="+62">+62 (ID)</option>
+                          <option value="+90">+90 (TR)</option>
+                          <option value="+31">+31 (NL)</option>
+                          <option value="+41">+41 (CH)</option>
+                          <option value="+46">+46 (SE)</option>
+                          <option value="+48">+48 (PL)</option>
+                          <option value="+32">+32 (BE)</option>
+                          <option value="+43">+43 (AT)</option>
+                          <option value="+45">+45 (DK)</option>
+                          <option value="+358">+358 (FI)</option>
+                          <option value="+47">+47 (NO)</option>
+                          <option value="+353">+353 (IE)</option>
+                          <option value="+64">+64 (NZ)</option>
+                          <option value="+65">+65 (SG)</option>
+                          <option value="+60">+60 (MY)</option>
+                          <option value="+63">+63 (PH)</option>
+                          <option value="+66">+66 (TH)</option>
+                          <option value="+84">+84 (VN)</option>
+                          <option value="+92">+92 (PK)</option>
+                          <option value="+880">+880 (BD)</option>
+                          <option value="+94">+94 (LK)</option>
+                          <option value="+972">+972 (IL)</option>
+                          <option value="+966">+966 (SA)</option>
+                          <option value="+27">+27 (ZA)</option>
+                          <option value="+20">+20 (EG)</option>
+                          <option value="+234">+234 (NG)</option>
+                          <option value="+254">+254 (KE)</option>
+                          <option value="+54">+54 (AR)</option>
+                          <option value="+56">+56 (CL)</option>
+                          <option value="+57">+57 (CO)</option>
+                          <option value="+51">+51 (PE)</option>
+                          <option value="+58">+58 (VE)</option>
+                          <option value="+380">+380 (UA)</option>
+                          <option value="+420">+420 (CZ)</option>
+                          <option value="+30">+30 (GR)</option>
                         </select>
                         <input required type="tel" id="phone" name="phone" className="w-full bg-transparent border-none outline-none text-black placeholder:text-black/40 pl-8 border-l border-black/20" placeholder="(555) 000-0000" />
                       </div>
