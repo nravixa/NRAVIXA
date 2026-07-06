@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "motion/react";
+import { motion, type Variants } from "motion/react";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { Content } from "@/components/layout/Content";
@@ -14,7 +14,7 @@ const stats = [
   { value: 12, suffix: "", label: "Industries Served" },
 ];
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -24,7 +24,7 @@ const staggerContainer = {
   },
 };
 
-const statItem = {
+const statItem: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
