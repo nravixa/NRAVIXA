@@ -2,6 +2,7 @@ import React from "react";
 import { Container } from "../layout/Container";
 import { Section } from "../layout/Section";
 import { Content } from "../layout/Content";
+import brewCafeImg from "../images/brew-cafe.jpeg";
 
 const concepts = [
   {
@@ -10,6 +11,7 @@ const concepts = [
     description: "An elegant, highly immersive digital experience designed for high-end boutique coffee shops.",
     alignLeft: true,
     link: "https://brew-bloom-lime.vercel.app/",
+    image: brewCafeImg.src,
   },
   {
     title: "Modern Restaurant Concept",
@@ -17,6 +19,7 @@ const concepts = [
     description: "A dark-mode, editorial-style reservation and menu platform for Michelin-star dining.",
     alignLeft: false,
     link: "#",
+    image: "",
   },
   {
     title: "Ashq",
@@ -24,6 +27,7 @@ const concepts = [
     description: "A conversion-focused, typography-driven marketing page for modern tech startups.",
     alignLeft: true,
     link: "#",
+    image: "",
   },
 ];
 
@@ -52,8 +56,15 @@ export function Concepts() {
                 {/* Visual Placeholder Block */}
                 <div className="w-full md:w-2/3 aspect-[4/3] bg-[#f8f8f8] border border-black/5 overflow-hidden relative cursor-pointer">
                   {/* Internal image placeholder that scales on hover */}
-                  <div className="absolute inset-0 bg-black/5 transition-transform duration-[800ms] ease-premium group-hover:scale-105 flex items-center justify-center">
-                    <span className="text-black/20 font-medium tracking-widest text-sm uppercase">Image Placeholder</span>
+                  <div 
+                    className={`absolute inset-0 transition-transform duration-[800ms] ease-premium group-hover:scale-105 flex items-center justify-center ${concept.image ? "bg-cover bg-center" : "bg-black/5"}`}
+                    style={concept.image ? { backgroundImage: `url(${concept.image})` } : {}}
+                  >
+                    {!concept.image && (
+                      <span className="text-black/20 font-medium tracking-widest text-sm uppercase">
+                        Image Placeholder
+                      </span>
+                    )}
                   </div>
                 </div>
 
