@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { Container } from "../layout/Container";
 import { Section } from "../layout/Section";
 import { Content } from "../layout/Content";
@@ -36,14 +37,18 @@ export function Services() {
               <div
                 key={service.title}
                 className="relative w-full h-[400px] overflow-hidden group cursor-pointer rounded-none"
+                tabIndex={0}
               >
                 {/* Background Image with slight zoom on hover */}
-                <div 
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-[800ms] ease-premium group-hover:scale-105"
-                  style={{ backgroundImage: `url(${service.image})` }}
+                <Image
+                  src={service.image}
+                  alt={service.title}
+                  fill
+                  className="object-cover transition-transform duration-[800ms] ease-premium group-hover:scale-105 group-focus:scale-105 group-active:scale-105"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
                 {/* Dark overlay for text readability */}
-                <div className="absolute inset-0 bg-black/30 transition-colors duration-500 ease-premium group-hover:bg-black/10" />
+                <div className="absolute inset-0 bg-black/30 transition-colors duration-500 ease-premium group-hover:bg-black/10 group-focus:bg-black/10 group-active:bg-black/10" />
                 
                 {/* Content */}
                 <div className="relative z-10 flex flex-col h-full justify-between w-full p-32">

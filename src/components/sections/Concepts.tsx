@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { Container } from "../layout/Container";
 import { Section } from "../layout/Section";
 import { Content } from "../layout/Content";
@@ -59,11 +60,18 @@ export function Concepts() {
                 <div className="w-full md:w-2/3 aspect-[4/3] bg-[#f8f8f8] border border-black/5 overflow-hidden relative cursor-pointer">
                   {/* Internal image placeholder that scales on hover */}
                   <div 
-                    className={`absolute inset-0 transition-transform duration-[800ms] ease-premium group-hover:scale-105 flex items-center justify-center ${concept.image ? "bg-cover bg-center" : "bg-black/5"}`}
-                    style={concept.image ? { backgroundImage: `url(${concept.image})` } : {}}
+                    className="absolute inset-0 transition-transform duration-[800ms] ease-premium group-hover:scale-105 flex items-center justify-center bg-black/5"
                   >
-                    {!concept.image && (
-                      <span className="text-black/20 font-medium tracking-widest text-sm uppercase">
+                    {concept.image ? (
+                      <Image
+                        src={concept.image}
+                        alt={concept.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 66vw"
+                      />
+                    ) : (
+                      <span className="text-black/20 font-medium tracking-widest text-sm uppercase relative z-10">
                         Image Placeholder
                       </span>
                     )}
