@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import Image from "next/image";
 
 interface FlipCardProps {
@@ -11,7 +11,7 @@ interface FlipCardProps {
   index: number;
 }
 
-export function FlipCard({ title, frontText, backTitle, backText, index }: FlipCardProps) {
+export const FlipCard = memo(function FlipCard({ title, frontText, backTitle, backText, index }: FlipCardProps) {
   const [isFlipped, setIsFlipped] = useState(false);
   const [isFlipping, setIsFlipping] = useState(false);
 
@@ -62,11 +62,7 @@ export function FlipCard({ title, frontText, backTitle, backText, index }: FlipC
           </div>
 
           <div className="w-[65%] flex flex-col justify-between p-24">
-            <header className="flex justify-end">
-              <div className="w-[35px] h-[35px] rounded-full bg-black text-white flex items-center justify-center transition-transform duration-300 group-hover:rotate-180">
-                ↻
-              </div>
-            </header>
+
 
             <div>
               <h3 className="text-xl font-bold text-black mb-8">{title}</h3>
@@ -78,11 +74,7 @@ export function FlipCard({ title, frontText, backTitle, backText, index }: FlipC
         {/* Back */}
         <div className="absolute inset-0 flex rounded-xl overflow-hidden bg-white shadow-[0_10px_30px_rgba(0,0,0,0.08)] [backface-visibility:hidden] [transform:rotateY(180deg)]">
           <div className="w-full flex flex-col justify-between p-24">
-            <header className="flex justify-end">
-              <div className="w-[35px] h-[35px] rounded-full bg-black text-white flex items-center justify-center transition-transform duration-300 group-hover:rotate-180">
-                ↻
-              </div>
-            </header>
+
 
             <div className="flex-1 mt-16 overflow-y-auto">
               <b className="text-black font-bold text-lg block mb-8">{backTitle}</b>
@@ -93,4 +85,4 @@ export function FlipCard({ title, frontText, backTitle, backText, index }: FlipC
       </div>
     </div>
   );
-}
+});

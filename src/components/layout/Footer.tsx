@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Container } from "./Container";
 import { Content } from "./Content";
 import { Icons } from "../ui/Icons";
+import { AnimatedSocialIcon } from "../ui/AnimatedSocialIcon";
 
 const navigation = [
   { name: "Services", href: "/services" },
@@ -11,13 +12,13 @@ const navigation = [
   { name: "Contact", href: "/contact" },
 ];
 
-const socials = [
-  { name: "Instagram", href: "https://instagram.com/nravixa", icon: Icons.Instagram },
-  { name: "Facebook", href: "https://facebook.com/nravixa", icon: Icons.Facebook },
-  { name: "X", href: "https://x.com/nravixa", icon: Icons.X },
-  { name: "LinkedIn", href: "https://linkedin.com/company/nravixa", icon: Icons.LinkedIn },
-  { name: "Reddit", href: "https://reddit.com/user/nravixa", icon: Icons.Reddit },
-  { name: "GitHub", href: "https://github.com/nravixa", icon: Icons.GitHub },
+const socials: { name: string; href: string; iconName: keyof typeof Icons }[] = [
+  { name: "Instagram", href: "https://instagram.com/nravixa", iconName: "Instagram" },
+  { name: "Facebook", href: "https://facebook.com/nravixa", iconName: "Facebook" },
+  { name: "X", href: "https://x.com/nravixa", iconName: "X" },
+  { name: "LinkedIn", href: "https://linkedin.com/company/nravixa", iconName: "LinkedIn" },
+  { name: "Reddit", href: "https://reddit.com/user/nravixa", iconName: "Reddit" },
+  { name: "GitHub", href: "https://github.com/nravixa", iconName: "GitHub" },
 ];
 
 export function Footer() {
@@ -42,20 +43,15 @@ export function Footer() {
             <div className="flex-1 flex justify-center my-16 md:my-0">
               <ul className="flex flex-row gap-24">
                 {socials.map((item) => {
-                  const Icon = item.icon;
                   return (
                     <li key={item.name}>
-                      <a
+                      <AnimatedSocialIcon
+                        name={item.name}
                         href={item.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex items-center gap-12 text-white/60 hover:text-white transition-all duration-300 ease-premium"
-                        aria-label={item.name}
-                      >
-                        <span className="p-8 rounded-full bg-white/5 group-hover:bg-white group-hover:text-black transition-all duration-300 ease-premium group-hover:scale-110">
-                          <Icon className="w-24 h-24" />
-                        </span>
-                      </a>
+                        iconName={item.iconName}
+                        className="w-24 h-24"
+                        containerClassName="p-8 rounded-full bg-white/5 text-white/60 transition-all duration-300 ease-premium"
+                      />
                     </li>
                   );
                 })}

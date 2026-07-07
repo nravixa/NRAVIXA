@@ -1,15 +1,15 @@
 "use client";
 
 import { motion } from "motion/react";
-import React from "react";
+import React, { memo } from "react";
 
-export function AnimatedBackground() {
+export const AnimatedBackground = memo(function AnimatedBackground() {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-[-1] bg-white">
       {/* Circle 1 */}
       <motion.div
         className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-blue-300/10 blur-[80px]"
-        style={{ willChange: "transform" }}
+        style={{ willChange: "transform", transform: "translateZ(0)" }}
         animate={{
           x: [0, 100, 0],
           y: [0, 50, 0],
@@ -25,7 +25,7 @@ export function AnimatedBackground() {
       {/* Circle 2 */}
       <motion.div
         className="absolute top-[20%] right-[-10%] w-[40vw] h-[40vw] rounded-full bg-purple-300/10 blur-[90px]"
-        style={{ willChange: "transform" }}
+        style={{ willChange: "transform", transform: "translateZ(0)" }}
         animate={{
           x: [0, -100, 0],
           y: [0, 100, 0],
@@ -42,7 +42,7 @@ export function AnimatedBackground() {
       {/* Circle 3 */}
       <motion.div
         className="absolute bottom-[-20%] left-[20%] w-[60vw] h-[60vw] rounded-full bg-teal-200/10 blur-[100px]"
-        style={{ willChange: "transform" }}
+        style={{ willChange: "transform", transform: "translateZ(0)" }}
         animate={{
           x: [0, 50, 0],
           y: [0, -100, 0],
@@ -57,4 +57,4 @@ export function AnimatedBackground() {
       />
     </div>
   );
-}
+});

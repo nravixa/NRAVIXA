@@ -18,7 +18,7 @@ const services = [
   { title: "Portfolio Websites", image: portfolioImg.src },
 ];
 
-export function Services() {
+export const Services = React.memo(function Services() {
   return (
     <Section id="services" className="bg-white">
       <Container>
@@ -44,6 +44,7 @@ export function Services() {
                   src={service.image}
                   alt={service.title}
                   fill
+                  loading="lazy"
                   className="object-cover transition-transform duration-[800ms] ease-premium group-hover:scale-105 group-focus:scale-105 group-active:scale-105"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
@@ -67,4 +68,4 @@ export function Services() {
       </Container>
     </Section>
   );
-}
+});

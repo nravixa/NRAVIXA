@@ -1,4 +1,7 @@
-import React from "react";
+"use client";
+
+import React, { useRef } from "react";
+import { motion } from "motion/react";
 import Image from "next/image";
 import { Container } from "../layout/Container";
 import { Section } from "../layout/Section";
@@ -34,7 +37,52 @@ const concepts = [
   },
 ];
 
-export function Concepts() {
+const AnimatedConceptImage = React.memo(function AnimatedConceptImage({ image, title }: { image: string, title: string }) {
+  const [animationKey, setAnimationKey] = React.useState(0);
+
+  const handleClick = () => {
+    setAnimationKey(prev => prev + 1);
+  };
+
+  return (
+    <div 
+      className="absolute inset-0 flex items-center justify-center bg-black/5 overflow-hidden cursor-pointer" 
+      onClick={handleClick}
+    >
+      <motion.div 
+        key={animationKey}
+        // If it's the initial render (key 0), start at scale 1. 
+        // If clicked (key > 0), play the scale animation.
+        initial={{ scale: 1 }}
+        animate={animationKey > 0 ? { scale: [1, 1.05, 1] } : { scale: 1 }}
+        transition={{ 
+          duration: 1.6, 
+          ease: [0.16, 1, 0.3, 1], // Matches ease-premium
+          times: [0, 0.5, 1]
+        }}
+        style={{ willChange: "transform" }}
+        className="w-full h-full relative"
+      >
+        {image ? (
+          <Image
+            src={image}
+            alt={title}
+            fill
+            loading="lazy"
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 66vw"
+          />
+        ) : (
+          <span className="text-black/20 font-medium tracking-widest text-sm uppercase relative z-10 flex h-full items-center justify-center">
+            Image Placeholder
+          </span>
+        )}
+      </motion.div>
+    </div>
+  );
+});
+
+export const Concepts = React.memo(function Concepts() {
   return (
     <Section id="concepts" className="bg-white !pt-0">
       <Container>
@@ -58,24 +106,7 @@ export function Concepts() {
               >
                 {/* Visual Placeholder Block */}
                 <div className="w-full md:w-2/3 aspect-[4/3] bg-[#f8f8f8] border border-black/5 overflow-hidden relative cursor-pointer">
-                  {/* Internal image placeholder that scales on hover */}
-                  <div 
-                    className="absolute inset-0 transition-transform duration-[800ms] ease-premium group-hover:scale-105 flex items-center justify-center bg-black/5"
-                  >
-                    {concept.image ? (
-                      <Image
-                        src={concept.image}
-                        alt={concept.title}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, 66vw"
-                      />
-                    ) : (
-                      <span className="text-black/20 font-medium tracking-widest text-sm uppercase relative z-10">
-                        Image Placeholder
-                      </span>
-                    )}
-                  </div>
+                  <AnimatedConceptImage image={concept.image} title={concept.title} />
                 </div>
 
                 {/* Content Block */}
@@ -113,7 +144,7 @@ export function Concepts() {
                       className="transition-transform duration-300 ease-premium group-hover/btn:translate-x-4"
                     >
                       <path
-                        d="M5 12H19M19 12L12 5M19 12L12 19"
+                        d="M5 12H19M19 12L12 5M19 12L19"
                         stroke="black"
                         strokeWidth="1.5"
                         strokeLinecap="round"
@@ -129,4 +160,4 @@ export function Concepts() {
       </Container>
     </Section>
   );
-}
+});

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import { motion, type Variants } from "motion/react";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
@@ -18,7 +18,7 @@ const cardVariants: Variants = {
   },
 };
 
-function MissionCard() {
+const MissionCard = memo(function MissionCard() {
   const [isAnimating, setIsAnimating] = useState(false);
 
   const handleClick = () => {
@@ -113,9 +113,9 @@ function MissionCard() {
       </h2>
     </motion.div>
   );
-}
+});
 
-function VisionCard() {
+const VisionCard = memo(function VisionCard() {
   const [isAnimating, setIsAnimating] = useState(false);
 
   const handleClick = () => {
@@ -221,9 +221,9 @@ function VisionCard() {
       </h2>
     </motion.div>
   );
-}
+});
 
-export function AboutMissionVision() {
+export const AboutMissionVision = memo(function AboutMissionVision() {
   return (
     <Section className="bg-[#f9f9f9] relative z-10 border-y border-black/5 overflow-hidden !py-32 md:!py-48 lg:!py-64">
       {/* Decorative Glow */}
@@ -239,4 +239,4 @@ export function AboutMissionVision() {
       </Container>
     </Section>
   );
-}
+});

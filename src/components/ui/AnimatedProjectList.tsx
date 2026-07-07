@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { memo } from "react";
 import { motion } from "motion/react";
 import { ProjectCard } from "./ProjectCard";
 
@@ -14,7 +14,7 @@ interface AnimatedProjectListProps {
   projects: Project[];
 }
 
-export function AnimatedProjectList({ projects }: AnimatedProjectListProps) {
+export const AnimatedProjectList = memo(function AnimatedProjectList({ projects }: AnimatedProjectListProps) {
   // Animation variants
   const getVariants = (index: number) => {
     // 0: Left, 1: Right, 2: Left, 3: Right, 4: Bottom
@@ -66,4 +66,4 @@ export function AnimatedProjectList({ projects }: AnimatedProjectListProps) {
       </div>
     </div>
   );
-}
+});

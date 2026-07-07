@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, ReactNode } from 'react';
+import React, { useEffect, useRef, ReactNode, memo } from 'react';
 import { gsap } from 'gsap';
 import { useInView } from 'motion/react';
 
@@ -17,7 +17,7 @@ interface DecayCardProps {
   className?: string;
 }
 
-const DecayCard: React.FC<DecayCardProps> = ({
+const DecayCard: React.FC<DecayCardProps> = memo(({
   width = 300,
   height = 400,
   image = 'https://picsum.photos/300/400?grayscale',
@@ -170,6 +170,6 @@ const DecayCard: React.FC<DecayCardProps> = ({
       </div>
     </div>
   );
-};
+});
 
 export default DecayCard;

@@ -1,13 +1,14 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
+import { AnimatedNavLink } from "./AnimatedNavLink";
 import { usePathname } from "next/navigation";
 
 interface NavLinksProps {
   mobile?: boolean;
   onClick?: (href?: string) => void;
   isScrolled?: boolean;
+  variants?: any; // Framer Motion variants for stagger children
 }
 
 const links = [
@@ -18,7 +19,7 @@ const links = [
   { name: "Contact", href: "/contact" },
 ];
 
-export function NavLinks({ mobile = false, onClick, isScrolled = false }: NavLinksProps) {
+export function NavLinks({ mobile = false, onClick, isScrolled = false, variants }: NavLinksProps) {
   const pathname = usePathname();
 
   return (
@@ -27,29 +28,22 @@ export function NavLinks({ mobile = false, onClick, isScrolled = false }: NavLin
         const isActive = pathname === link.href;
 
       return (
-      <Link
-        key={link.name}
-        href={link.href}
-        onClick={(e) => {
-          if (mobile && onClick) {
-            e.preventDefault();
-            onClick(link.href);
-          } else if (onClick) {
-            onClick();
-          }
-        }}
-        className={`${mobile
-            ? `text-4xl tracking-tight transition-colors duration-300 ease-premium ${isActive ? "font-semibold text-black" : "font-medium text-gray-500 hover:text-gray-800"
-            }`
-            : isScrolled
-              ? `text-sm transition-colors duration-300 ease-premium ${isActive ? "font-semibold text-black" : "font-medium text-gray-500 hover:text-gray-800"
-              }`
-              : `text-sm transition-colors duration-300 ease-premium ${isActive ? "font-semibold text-white" : "font-medium text-gray-400 hover:text-gray-200"
-              }`
-          }`}
-      >
-        {link.name}
-      </Link>
+        <AnimatedNavLink
+          key={link.name}
+          name={link.name}
+          href={link.href}
+          isActive={isActive}
+          isScrolled={isScrolled}
+          mobile={mobile}
+          onClick={() => {
+            if (mobile && onClick) {
+              onClick(link.href);
+            } else if (onClick) {
+              onClick();
+            }
+          }}
+          variants={variants}
+        />
       );
       })}
     </>

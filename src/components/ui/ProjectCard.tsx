@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -9,7 +9,7 @@ interface ProjectCardProps {
   link?: string;
 }
 
-export function ProjectCard({ title, description, image, link = "#" }: ProjectCardProps) {
+export const ProjectCard = memo(function ProjectCard({ title, description, image, link = "#" }: ProjectCardProps) {
   return (
     <Link href={link} className="relative w-full h-[360px] rounded-[15px] overflow-hidden flex items-end p-24 cursor-pointer transition-transform duration-400 ease-[ease] shadow-[0_7px_15px_rgba(0,0,0,0.15)] group md:hover:-translate-y-5 block">
       {/* Overlay */}
@@ -31,4 +31,4 @@ export function ProjectCard({ title, description, image, link = "#" }: ProjectCa
       </div>
     </Link>
   );
-}
+});

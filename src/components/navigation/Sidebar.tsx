@@ -3,83 +3,105 @@
 import React from "react";
 import { NavLinks } from "./NavLinks";
 import { Icons } from "../ui/Icons";
+import { AnimatedSocialIcon } from "../ui/AnimatedSocialIcon";
+import { motion, AnimatePresence } from "motion/react";
 
 interface SidebarProps {
   isOpen: boolean;
   onClose: (href?: string) => void;
 }
 
-const socials = [
-  { name: "Instagram", href: "https://instagram.com/nravixa", icon: Icons.Instagram },
-  { name: "Facebook", href: "https://facebook.com/nravixa", icon: Icons.Facebook },
-  { name: "X", href: "https://x.com/nravixa", icon: Icons.X },
-  { name: "LinkedIn", href: "https://linkedin.com/company/nravixa", icon: Icons.LinkedIn },
-  { name: "Reddit", href: "https://reddit.com/user/nravixa", icon: Icons.Reddit },
-  { name: "GitHub", href: "https://github.com/nravixa", icon: Icons.GitHub },
+const socials: { name: string; href: string; iconName: keyof typeof Icons }[] = [
+  { name: "Instagram", href: "https://instagram.com/nravixa", iconName: "Instagram" },
+  { name: "Facebook", href: "https://facebook.com/nravixa", iconName: "Facebook" },
+  { name: "X", href: "https://x.com/nravixa", iconName: "X" },
+  { name: "LinkedIn", href: "https://linkedin.com/company/nravixa", iconName: "LinkedIn" },
+  { name: "Reddit", href: "https://reddit.com/user/nravixa", iconName: "Reddit" },
+  { name: "GitHub", href: "https://github.com/nravixa", iconName: "GitHub" },
 ];
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2, // wait for drawer to start opening
+    }
+  }
+};
+
+const staggerItem = {
+  hidden: { opacity: 0, x: -20 },
+  show: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 100, damping: 15 } }
+};
 
 export function Sidebar({ isOpen, onClose }: SidebarProps) {
   return (
-    <>
-      {/* Overlay to close sidebar when clicking outside */}
-      <div 
-        className={`fixed inset-0 bg-black/20 backdrop-blur-sm z-40 transition-opacity duration-300 md:hidden ${isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
-        onClick={() => onClose()}
-      />
-      
-      {/* Sidebar Drawer */}
-      <div
-        className={`fixed inset-y-0 left-0 w-full z-50 bg-white shadow-2xl flex flex-col justify-between pt-[100px] transition-transform duration-500 ease-premium md:hidden ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
-      >
-        {/* Close Button */}
-        <button
-          onClick={() => onClose()}
-          className="absolute top-[24px] right-[24px] p-8 bg-[#f8f8f8] rounded-full text-black hover:bg-black/10 transition-colors duration-300 ease-premium focus:outline-none"
-          aria-label="Close Menu"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
+    <AnimatePresence>
+      {isOpen && (
+        <>
+          {/* Overlay */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden"
+            onClick={() => onClose()}
+          />
+          
+          {/* Sidebar Drawer */}
+          <motion.div
+            initial={{ x: "-100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "-100%" }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} // ease-premium equivalent
+            className="fixed inset-y-0 left-0 w-full z-50 bg-white shadow-2xl flex flex-col justify-between pt-[100px] md:hidden"
           >
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
+            {/* Close Button */}
+            <button
+              onClick={() => onClose()}
+              className="absolute top-[24px] right-[24px] p-8 bg-[#f8f8f8] rounded-full text-black hover:bg-black/10 transition-colors duration-300 ease-premium focus:outline-none"
+              aria-label="Close Menu"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
 
-        <div className="px-32 w-full flex flex-col items-center">
-          <nav className="flex flex-col items-center gap-32 text-center w-full">
-            <NavLinks mobile onClick={onClose} />
-          </nav>
-        </div>
+            {/* Stagger Container */}
+            <motion.div 
+              variants={staggerContainer}
+              initial="hidden"
+              animate="show"
+              className="px-32 w-full flex flex-col items-center h-full justify-between pb-24"
+            >
+              <nav className="flex flex-col items-center gap-32 text-center w-full mt-32">
+                <NavLinks mobile onClick={onClose} variants={staggerItem} />
+              </nav>
 
-        {/* Social Icons at the bottom */}
-        <div className="w-full bg-[#f8f8f8] border-t border-black/5 py-24 flex justify-evenly items-center mt-auto">
-          {socials.map((item) => {
-            const Icon = item.icon;
-            return (
-              <a
-                key={item.name}
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={item.name}
-                className="text-black hover:text-black/60 transition-all duration-300 ease-premium hover:-translate-y-2"
-              >
-                <Icon className="w-24 h-24" />
-              </a>
-            );
-          })}
-        </div>
-      </div>
-    </>
+              {/* Social Icons at the bottom (part of the same stagger) */}
+              <div className="w-full flex justify-evenly items-center mt-auto">
+                {socials.map((item) => {
+                  return (
+                    <AnimatedSocialIcon
+                      key={item.name}
+                      name={item.name}
+                      href={item.href}
+                      iconName={item.iconName}
+                      className="w-24 h-24"
+                      containerClassName="text-black transition-all duration-300 ease-premium"
+                      variants={staggerItem}
+                    />
+                  );
+                })}
+              </div>
+            </motion.div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
   );
 }

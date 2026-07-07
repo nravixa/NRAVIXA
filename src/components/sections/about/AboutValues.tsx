@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import { motion, type Variants } from "motion/react";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
@@ -67,7 +67,7 @@ const cardEntranceVariants: Variants = {
   },
 };
 
-function AnimatedValueCard({ value }: { value: typeof values[0] }) {
+const AnimatedValueCard = memo(function AnimatedValueCard({ value }: { value: typeof values[0] }) {
   const [isAnimating, setIsAnimating] = useState(false);
 
   const handleClick = () => {
@@ -228,9 +228,9 @@ function AnimatedValueCard({ value }: { value: typeof values[0] }) {
       </div>
     </motion.div>
   );
-}
+});
 
-export function AboutValues() {
+export const AboutValues = memo(function AboutValues() {
   return (
     <Section className="bg-white relative z-10 border-y border-black/5 !py-32 md:!py-48 lg:!py-64">
       <Container>
@@ -261,4 +261,4 @@ export function AboutValues() {
       </Container>
     </Section>
   );
-}
+});
