@@ -1,9 +1,15 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 
 export function HeroVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 2.0; // Play video at 2x speed
+    }
+  }, []);
 
   return (
     <video

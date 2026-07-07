@@ -6,15 +6,16 @@ import { Icons } from "../ui/Icons";
 
 interface SidebarProps {
   isOpen: boolean;
-  onClose: () => void;
+  onClose: (href?: string) => void;
 }
 
 const socials = [
-  { name: "Instagram", href: "https://instagram.com", icon: Icons.Instagram },
-  { name: "Facebook", href: "https://facebook.com", icon: Icons.Facebook },
-  { name: "GitHub", href: "https://github.com", icon: Icons.GitHub },
-  { name: "X", href: "https://x.com", icon: Icons.X },
-  { name: "LinkedIn", href: "https://linkedin.com", icon: Icons.LinkedIn },
+  { name: "Instagram", href: "https://instagram.com/nravixa", icon: Icons.Instagram },
+  { name: "Facebook", href: "https://facebook.com/nravixa", icon: Icons.Facebook },
+  { name: "X", href: "https://x.com/nravixa", icon: Icons.X },
+  { name: "LinkedIn", href: "https://linkedin.com/company/nravixa", icon: Icons.LinkedIn },
+  { name: "Reddit", href: "https://reddit.com/user/nravixa", icon: Icons.Reddit },
+  { name: "GitHub", href: "https://github.com/nravixa", icon: Icons.GitHub },
 ];
 
 export function Sidebar({ isOpen, onClose }: SidebarProps) {
@@ -23,7 +24,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
       {/* Overlay to close sidebar when clicking outside */}
       <div 
         className={`fixed inset-0 bg-black/20 backdrop-blur-sm z-40 transition-opacity duration-300 md:hidden ${isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
-        onClick={onClose}
+        onClick={() => onClose()}
       />
       
       {/* Sidebar Drawer */}
@@ -34,7 +35,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
       >
         {/* Close Button */}
         <button
-          onClick={onClose}
+          onClick={() => onClose()}
           className="absolute top-[24px] right-[24px] p-8 bg-[#f8f8f8] rounded-full text-black hover:bg-black/10 transition-colors duration-300 ease-premium focus:outline-none"
           aria-label="Close Menu"
         >

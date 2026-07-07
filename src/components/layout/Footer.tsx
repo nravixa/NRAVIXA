@@ -12,12 +12,12 @@ const navigation = [
 ];
 
 const socials = [
-  { name: "Instagram", href: "https://instagram.com", icon: Icons.Instagram },
-  { name: "Facebook", href: "https://facebook.com", icon: Icons.Facebook },
-  { name: "GitHub", href: "https://github.com", icon: Icons.GitHub },
-  { name: "X", href: "https://x.com", icon: Icons.X },
-  { name: "LinkedIn", href: "https://linkedin.com", icon: Icons.LinkedIn },
-  { name: "Reddit", href: "https://reddit.com", icon: Icons.Reddit },
+  { name: "Instagram", href: "https://instagram.com/nravixa", icon: Icons.Instagram },
+  { name: "Facebook", href: "https://facebook.com/nravixa", icon: Icons.Facebook },
+  { name: "X", href: "https://x.com/nravixa", icon: Icons.X },
+  { name: "LinkedIn", href: "https://linkedin.com/company/nravixa", icon: Icons.LinkedIn },
+  { name: "Reddit", href: "https://reddit.com/user/nravixa", icon: Icons.Reddit },
+  { name: "GitHub", href: "https://github.com/nravixa", icon: Icons.GitHub },
 ];
 
 export function Footer() {

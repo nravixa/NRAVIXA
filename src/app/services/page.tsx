@@ -63,7 +63,7 @@ export default function ServicesPage() {
   return (
     <>
       {/* Hero Section */}
-      <Section className="bg-black text-white pt-160 pb-96 md:pt-200 md:pb-160">
+      <Section variant="hero" className="bg-black text-white">
         <Container>
           <Content>
             <div className="col-span-12 md:col-span-10 flex flex-col justify-center">
@@ -96,7 +96,7 @@ export default function ServicesPage() {
       </Section>
 
       {/* What We Offer Section */}
-      <Section className="bg-white py-96 md:py-160">
+      <Section className="bg-white">
         <Container>
           <Content>
             <div className="col-span-12 mb-64 flex flex-col">
@@ -125,7 +125,7 @@ export default function ServicesPage() {
       </Section>
 
       {/* Why Choose Us & Technologies Section */}
-      <Section className="bg-[#111] text-white py-96 md:py-160">
+      <Section className="bg-[#111] text-white">
         <Container>
           <Content>
             <div className="col-span-12 flex flex-col items-center text-center">

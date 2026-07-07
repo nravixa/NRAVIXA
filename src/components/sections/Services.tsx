@@ -20,7 +20,7 @@ const services = [
 
 export function Services() {
   return (
-    <Section id="services" className="bg-white py-96 md:py-160">
+    <Section id="services" className="bg-white">
       <Container>
         <Content>
           <div className="col-span-12 mb-64 flex flex-col">

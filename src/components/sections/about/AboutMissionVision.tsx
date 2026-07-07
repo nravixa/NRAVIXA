@@ -20,7 +20,7 @@ const cardVariants: Variants = {
 
 export function AboutMissionVision() {
   return (
-    <Section className="bg-[#f9f9f9] py-96 md:py-160 relative z-10 border-y border-black/5 overflow-hidden">
+    <Section className="bg-[#f9f9f9] relative z-10 border-y border-black/5 overflow-hidden !py-32 md:!py-48 lg:!py-64">
       {/* Decorative Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] h-[300px] bg-gradient-to-r from-blue-400/10 to-purple-400/10 blur-[100px] rounded-full pointer-events-none" />
 

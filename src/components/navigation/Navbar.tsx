@@ -2,11 +2,13 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { NavLinks } from "./NavLinks";
 import { Container } from "../layout/Container";
 import { Sidebar } from "./Sidebar";
 
 export function Navbar() {
+  const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -14,9 +16,41 @@ export function Navbar() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     }; 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+      
+      window.history.pushState({ isMobileMenu: true }, "");
+
+      const handlePopState = () => {
+        setIsMobileMenuOpen(false);
+      };
+
+      window.addEventListener("popstate", handlePopState);
+
+      return () => {
+        document.body.style.overflow = "";
+        window.removeEventListener("popstate", handlePopState);
+      };
+    }
+  }, [isMobileMenuOpen]);
+
+  const handleCloseMenu = (href?: string) => {
+    if (window.history.state?.isMobileMenu) {
+      if (href) {
+        router.replace(href);
+      } else {
+        window.history.back();
+      }
+    } else if (href) {
+      router.push(href);
+    }
+    setIsMobileMenuOpen(false);
+  };
 
   return (
     <>
@@ -31,7 +65,13 @@ export function Navbar() {
           {/* Mobile Menu Toggle (Left Side on Mobile) */}
           <div className="flex items-center gap-16 md:hidden">
             <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              onClick={() => {
+                if (isMobileMenuOpen) {
+                  handleCloseMenu();
+                } else {
+                  setIsMobileMenuOpen(true);
+                }
+              }}
               className="flex flex-col justify-center items-center w-[32px] h-[32px] gap-[6px] relative z-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black"
               aria-label="Toggle Menu"
               aria-expanded={isMobileMenuOpen}
@@ -85,7 +125,7 @@ export function Navbar() {
       </header>
 
       {/* New Sidebar Drawer */}
-      <Sidebar isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
+      <Sidebar isOpen={isMobileMenuOpen} onClose={handleCloseMenu} />
     </>
   );
 }

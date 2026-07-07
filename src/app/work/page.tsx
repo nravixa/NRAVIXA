@@ -3,6 +3,7 @@ import { Section } from "@/components/layout/Section";
 import { Content } from "@/components/layout/Content";
 import { CountUp } from "@/components/ui/CountUp";
 import { ProjectCard } from "@/components/ui/ProjectCard";
+import { AnimatedProjectList } from "@/components/ui/AnimatedProjectList";
 import type { Metadata } from "next";
 
 import businessWebsiteImg from "@/components/images/business-website.jpg";
@@ -64,7 +65,7 @@ export default function WorkPage() {
   return (
     <>
       {/* Hero Section */}
-      <Section className="bg-black text-white pt-160 pb-96 md:pt-200 md:pb-160">
+      <Section variant="hero" className="bg-black text-white">
         <Container>
           <Content>
             <div className="col-span-12 md:col-span-10 flex flex-col justify-center">
@@ -83,7 +84,7 @@ export default function WorkPage() {
       </Section>
 
       {/* Featured Projects Section */}
-      <Section className="bg-white py-96 md:py-160">
+      <Section className="bg-white !pb-32 md:!pb-64 lg:!pb-96">
         <Container>
           <Content>
             <div className="col-span-12 mb-64 flex flex-col">
@@ -95,22 +96,13 @@ export default function WorkPage() {
               </h2>
             </div>
 
-            <div className="col-span-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-32">
-              {projects.map((project) => (
-                <ProjectCard
-                  key={project.title}
-                  title={project.title}
-                  description={project.desc}
-                  image={project.image}
-                />
-              ))}
-            </div>
+            <AnimatedProjectList projects={projects} />
           </Content>
         </Container>
       </Section>
 
       {/* Our Process Section */}
-      <Section className="bg-[#f9f9f9] py-96 md:py-160 border-y border-black/5">
+      <Section className="bg-[#f9f9f9] border-y border-black/5 !pt-32 md:!pt-64 lg:!pt-96">
         <Container>
           <Content>
             <div className="col-span-12 md:col-span-4 mb-64 md:mb-0">
@@ -140,7 +132,7 @@ export default function WorkPage() {
       </Section>
 
       {/* Statistics Section */}
-      <Section className="bg-black text-white py-96 md:py-160">
+      <Section className="bg-black text-white">
         <Container>
           <Content>
             <div className="col-span-12 grid grid-cols-2 md:grid-cols-4 gap-48 text-center md:text-left">

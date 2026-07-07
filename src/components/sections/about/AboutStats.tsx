@@ -38,7 +38,7 @@ const statItem: Variants = {
 
 export function AboutStats() {
   return (
-    <Section className="bg-white py-96 md:py-160 relative z-10">
+    <Section className="bg-white relative z-10">
       <Container>
         <Content>
           <motion.div

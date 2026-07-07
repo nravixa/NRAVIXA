@@ -18,7 +18,7 @@ const fadeUp: Variants = {
 
 export function AboutCTA() {
   return (
-    <Section className="bg-white py-96 md:py-160 relative z-10 overflow-hidden">
+    <Section className="bg-white relative z-10 overflow-hidden">
       {/* Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] h-[400px] bg-gradient-to-b from-blue-100/50 to-purple-100/50 blur-[120px] rounded-full pointer-events-none z-0" />
 

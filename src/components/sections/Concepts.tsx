@@ -36,10 +36,10 @@ const concepts = [
 
 export function Concepts() {
   return (
-    <Section id="concepts" className="bg-white py-96 md:py-160">
+    <Section id="concepts" className="bg-white !pt-0">
       <Container>
         <Content>
-          <div className="col-span-12 mb-96">
+          <div className="col-span-12 mb-64">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-black mb-16">
               Selected Concepts
             </h2>

@@ -9,7 +9,7 @@ import { HeroVideo } from "@/components/ui/HeroVideo";
 export default function Home() {
   return (
     <>
-      <Section id="hero" className="min-h-screen flex items-center py-96 md:py-160 relative overflow-hidden">
+      <Section id="hero" variant="hero" className="relative overflow-hidden">
         {/* Background Video */}
         <HeroVideo />
         {/* Subtle dark overlay for readability if needed */}
@@ -22,7 +22,7 @@ export default function Home() {
               - Left aligned with massive typography.
               - Utilizing 10 out of 12 columns on large screens to create negative space on the right.
             */}
-            <div className="col-span-12 lg:col-span-10 flex flex-col justify-center text-white">
+            <div className="col-span-12 md:col-span-10 flex flex-col justify-center text-white">
               <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-bold tracking-tighter leading-[1.05] text-white mb-32 max-w-[1000px]">
                 Helping Businesses Grow Through Modern Web Experiences
               </h1>

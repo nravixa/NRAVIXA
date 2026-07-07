@@ -40,10 +40,10 @@ export function AboutTimeline() {
   const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <Section className="bg-black text-white py-96 md:py-160 relative z-10 overflow-hidden">
+    <Section className="bg-black text-white relative z-10 overflow-hidden">
       <Container>
         <Content>
-          <div className="col-span-12 mb-96 text-center flex flex-col items-center">
+          <div className="col-span-12 mb-64 text-center flex flex-col items-center">
             <span className="text-xs font-semibold tracking-[0.2em] uppercase text-white/40 mb-16">
               Our Journey
             </span>

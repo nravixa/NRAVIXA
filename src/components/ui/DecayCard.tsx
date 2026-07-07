@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, ReactNode } from 'react';
 import { gsap } from 'gsap';
+import { useInView } from 'motion/react';
 
 interface DecayCardProps {
   width?: number | string;
@@ -28,6 +29,8 @@ const DecayCard: React.FC<DecayCardProps> = ({
   children,
   className = ""
 }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(containerRef, { margin: "100px" });
   const svgRef = useRef<HTMLDivElement>(null);
   const displacementMapRef = useRef<SVGFEDisplacementMapElement>(null);
   const cursor = useRef({ x: typeof window !== 'undefined' ? window.innerWidth / 2 : 0, y: typeof window !== 'undefined' ? window.innerHeight / 2 : 0 });
@@ -35,6 +38,8 @@ const DecayCard: React.FC<DecayCardProps> = ({
   const winsize = useRef({ width: typeof window !== 'undefined' ? window.innerWidth : 0, height: typeof window !== 'undefined' ? window.innerHeight : 0 });
 
   useEffect(() => {
+    if (!isInView) return;
+
     const lerp = (a: number, b: number, n: number) => (1 - n) * a + n * b;
     const map = (x: number, a: number, b: number, c: number, d: number) => ((x - a) * (d - c)) / (b - a) + c;
     const distance = (x1: number, x2: number, y1: number, y2: number) => {
@@ -51,8 +56,8 @@ const DecayCard: React.FC<DecayCardProps> = ({
       cursor.current = { x: ev.clientX, y: ev.clientY };
     };
 
-    window.addEventListener('resize', handleResize);
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('resize', handleResize, { passive: true });
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
 
     const imgValues = {
       imgTransforms: { x: 0, y: 0, rz: 0 },
@@ -111,13 +116,13 @@ const DecayCard: React.FC<DecayCardProps> = ({
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
     };
-  }, [maxDisplacement, movementBound]);
+  }, [maxDisplacement, movementBound, isInView]);
 
   const widthStyle = typeof width === 'number' ? `${width}px` : width;
   const heightStyle = typeof height === 'number' ? `${height}px` : height;
 
   return (
-    <div className={`relative overflow-hidden group ${className}`} style={{ width: widthStyle, height: heightStyle }}>
+    <div ref={containerRef} className={`relative overflow-hidden group ${className}`} style={{ width: widthStyle, height: heightStyle }}>
       <div ref={svgRef} className="absolute inset-0 w-full h-full will-change-transform scale-125">
         <svg viewBox="-60 -75 720 900" preserveAspectRatio="xMidYMid slice" className="relative w-full h-full block">
           <filter id="imgFilter">

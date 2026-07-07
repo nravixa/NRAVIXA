@@ -69,7 +69,7 @@ const cardVariants: Variants = {
 
 export function AboutValues() {
   return (
-    <Section className="bg-white py-96 md:py-160 relative z-10 border-y border-black/5">
+    <Section className="bg-white relative z-10 border-y border-black/5 !py-32 md:!py-48 lg:!py-64">
       <Container>
         <Content>
           <div className="col-span-12 mb-64 flex flex-col items-center text-center">

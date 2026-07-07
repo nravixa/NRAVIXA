@@ -28,9 +28,6 @@ export function ProjectCard({ title, description, image, link = "#" }: ProjectCa
       <div className="relative z-20 text-white md:translate-y-[40px] translate-y-0 md:opacity-0 opacity-100 transition-all duration-500 ease-[ease] md:group-hover:translate-y-0 md:group-hover:opacity-100 w-full">
         <h3 className="mb-10 text-2xl font-bold tracking-tight">{title}</h3>
         <p className="text-[15px] leading-relaxed mb-20 text-white/90">{description}</p>
-        <button className="px-20 py-10 border-none rounded bg-white text-black font-bold cursor-pointer transition-all duration-300 hover:bg-black hover:text-white">
-          Read More
-        </button>
       </div>
     </Link>
   );

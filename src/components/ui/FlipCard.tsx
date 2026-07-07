@@ -13,9 +13,16 @@ interface FlipCardProps {
 
 export function FlipCard({ title, frontText, backTitle, backText, index }: FlipCardProps) {
   const [isFlipped, setIsFlipped] = useState(false);
+  const [isFlipping, setIsFlipping] = useState(false);
 
   const toggleFlip = () => {
+    if (isFlipping) return;
+    setIsFlipping(true);
     setIsFlipped(!isFlipped);
+    
+    setTimeout(() => {
+      setIsFlipping(false);
+    }, 700);
   };
 
   const patterns = [
@@ -30,7 +37,19 @@ export function FlipCard({ title, frontText, backTitle, backText, index }: FlipC
   ];
 
   return (
-    <div className="w-full h-[250px] [perspective:1000px] group">
+    <div 
+      className="w-full h-[250px] [perspective:1000px] group cursor-pointer"
+      onClick={toggleFlip}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleFlip();
+        }
+      }}
+      role="button"
+      tabIndex={0}
+      aria-label={isFlipped ? "Flip Card Back" : "Flip Card"}
+    >
       <div
         className={`relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] ${
           isFlipped ? "[transform:rotateY(-180deg)]" : ""
@@ -39,27 +58,20 @@ export function FlipCard({ title, frontText, backTitle, backText, index }: FlipC
         {/* Front */}
         <div className="absolute inset-0 flex rounded-xl overflow-hidden bg-white shadow-[0_10px_30px_rgba(0,0,0,0.08)] [backface-visibility:hidden]">
           <div className="w-[35%] relative flex items-end" style={{ background: patterns[index % patterns.length] }}>
-            <p className="relative w-full p-16 text-white text-center font-bold bg-black/40 text-sm">
-              0{index + 1}
-            </p>
+            {/* Numbering removed */}
           </div>
 
           <div className="w-[65%] flex flex-col justify-between p-24">
             <header className="flex justify-end">
-              <button
-                className="w-[35px] h-[35px] rounded-full bg-black text-white flex items-center justify-center cursor-pointer transition-transform duration-300 hover:rotate-180 focus:outline-none"
-                onClick={toggleFlip}
-                aria-label="Flip Card"
-              >
+              <div className="w-[35px] h-[35px] rounded-full bg-black text-white flex items-center justify-center transition-transform duration-300 group-hover:rotate-180">
                 ↻
-              </button>
+              </div>
             </header>
 
             <div>
               <h3 className="text-xl font-bold text-black mb-8">{title}</h3>
               <p className="text-black/60 text-sm leading-relaxed">{frontText}</p>
             </div>
-
           </div>
         </div>
 
@@ -67,13 +79,9 @@ export function FlipCard({ title, frontText, backTitle, backText, index }: FlipC
         <div className="absolute inset-0 flex rounded-xl overflow-hidden bg-white shadow-[0_10px_30px_rgba(0,0,0,0.08)] [backface-visibility:hidden] [transform:rotateY(180deg)]">
           <div className="w-full flex flex-col justify-between p-24">
             <header className="flex justify-end">
-              <button
-                className="w-[35px] h-[35px] rounded-full bg-black text-white flex items-center justify-center cursor-pointer transition-transform duration-300 hover:rotate-180 focus:outline-none"
-                onClick={toggleFlip}
-                aria-label="Flip Card Back"
-              >
+              <div className="w-[35px] h-[35px] rounded-full bg-black text-white flex items-center justify-center transition-transform duration-300 group-hover:rotate-180">
                 ↻
-              </button>
+              </div>
             </header>
 
             <div className="flex-1 mt-16 overflow-y-auto">

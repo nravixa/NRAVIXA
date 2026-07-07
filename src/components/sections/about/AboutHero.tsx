@@ -45,7 +45,7 @@ export function AboutHero() {
   const headlineWords = "We Create Digital Experiences That Accelerate Growth".split(" ");
 
   return (
-    <Section className="relative bg-black text-white pt-160 pb-96 md:pt-240 md:pb-160 overflow-hidden">
+    <Section variant="hero" className="relative bg-black text-white overflow-hidden !pb-32 md:!pb-48 lg:!pb-64">
       {/* Subtle Hero Glow */}
       <motion.div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[80vw] h-[400px] bg-gradient-to-b from-white/10 to-transparent blur-3xl rounded-full z-0 pointer-events-none"

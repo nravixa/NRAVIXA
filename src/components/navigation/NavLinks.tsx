@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 
 interface NavLinksProps {
   mobile?: boolean;
-  onClick?: () => void;
+  onClick?: (href?: string) => void;
   isScrolled?: boolean;
 }
 
@@ -30,7 +30,14 @@ export function NavLinks({ mobile = false, onClick, isScrolled = false }: NavLin
       <Link
         key={link.name}
         href={link.href}
-        onClick={onClick}
+        onClick={(e) => {
+          if (mobile && onClick) {
+            e.preventDefault();
+            onClick(link.href);
+          } else if (onClick) {
+            onClick();
+          }
+        }}
         className={`${mobile
             ? `text-4xl tracking-tight transition-colors duration-300 ease-premium ${isActive ? "font-semibold text-black" : "font-medium text-gray-500 hover:text-gray-800"
             }`
