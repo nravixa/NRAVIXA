@@ -4,7 +4,7 @@ import React from "react";
 import { NavLinks } from "./NavLinks";
 import { Icons } from "../ui/Icons";
 import { AnimatedSocialIcon } from "../ui/AnimatedSocialIcon";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence, Variants } from "motion/react";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -20,7 +20,7 @@ const socials: { name: string; href: string; iconName: keyof typeof Icons }[] = 
   { name: "GitHub", href: "https://github.com/nravixa", iconName: "GitHub" },
 ];
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
@@ -31,7 +31,7 @@ const staggerContainer = {
   }
 };
 
-const staggerItem = {
+const staggerItem: Variants = {
   hidden: { opacity: 0, x: -20 },
   show: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 100, damping: 15 } }
 };
