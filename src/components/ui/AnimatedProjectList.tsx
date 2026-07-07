@@ -33,35 +33,37 @@ export function AnimatedProjectList({ projects }: AnimatedProjectListProps) {
   };
 
   return (
-    <div className="col-span-12 grid grid-cols-1 md:grid-cols-2 gap-32">
-      {projects.map((project, index) => {
-        // Center the 5th card in a 2-column grid
-        const isLastCard = index === 4;
-        
-        return (
-          <motion.div
-            key={project.title}
-            className={isLastCard ? "md:col-span-2 flex justify-center" : ""}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, margin: "-50px" }}
-            transition={{
-              duration: 1.4,
-              ease: [0.22, 1, 0.36, 1], // Custom premium ease-out
-              delay: index * 0.2, // Stagger 200ms
-            }}
-            variants={getVariants(index)}
-          >
-            <div className={isLastCard ? "w-full md:w-1/2" : "w-full"}>
-              <ProjectCard
-                title={project.title}
-                description={project.desc}
-                image={project.image}
-              />
-            </div>
-          </motion.div>
-        );
-      })}
+    <div className="overflow-hidden w-full col-span-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-32">
+        {projects.map((project, index) => {
+          // Center the 5th card in a 2-column grid
+          const isLastCard = index === 4;
+          
+          return (
+            <motion.div
+              key={project.title}
+              className={isLastCard ? "md:col-span-2 flex justify-center" : ""}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, margin: "-50px" }}
+              transition={{
+                duration: 1.4,
+                ease: [0.22, 1, 0.36, 1], // Custom premium ease-out
+                delay: index * 0.2, // Stagger 200ms
+              }}
+              variants={getVariants(index)}
+            >
+              <div className={isLastCard ? "w-full md:w-1/2" : "w-full"}>
+                <ProjectCard
+                  title={project.title}
+                  description={project.desc}
+                  image={project.image}
+                />
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
     </div>
   );
 }

@@ -52,9 +52,7 @@ export function Services() {
                 
                 {/* Content */}
                 <div className="relative z-10 flex flex-col h-full justify-between w-full p-32">
-                  <span className="text-sm font-medium text-white/90">
-                    0{index + 1}
-                  </span>
+                  <div aria-hidden="true" />
                   
                   <div className="flex items-end justify-between">
                     <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-white max-w-[200px] leading-tight">

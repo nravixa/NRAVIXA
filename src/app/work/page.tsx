@@ -84,7 +84,7 @@ export default function WorkPage() {
       </Section>
 
       {/* Featured Projects Section */}
-      <Section className="bg-white !pb-32 md:!pb-64 lg:!pb-96">
+      <Section className="bg-white">
         <Container>
           <Content>
             <div className="col-span-12 mb-64 flex flex-col">
@@ -102,7 +102,7 @@ export default function WorkPage() {
       </Section>
 
       {/* Our Process Section */}
-      <Section className="bg-[#f9f9f9] border-y border-black/5 !pt-32 md:!pt-64 lg:!pt-96">
+      <Section className="bg-[#f9f9f9] border-y border-black/5">
         <Container>
           <Content>
             <div className="col-span-12 md:col-span-4 mb-64 md:mb-0">
