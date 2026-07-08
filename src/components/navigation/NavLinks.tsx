@@ -36,9 +36,7 @@ export function NavLinks({ mobile = false, onClick, isScrolled = false, variants
           isScrolled={isScrolled}
           mobile={mobile}
           onClick={() => {
-            if (mobile && onClick) {
-              onClick(link.href);
-            } else if (onClick) {
+            if (onClick) {
               onClick();
             }
           }}

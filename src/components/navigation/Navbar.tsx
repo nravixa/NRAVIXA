@@ -23,32 +23,13 @@ export function Navbar() {
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = "hidden";
-      
-      window.history.pushState({ isMobileMenu: true }, "");
-
-      const handlePopState = () => {
-        setIsMobileMenuOpen(false);
-      };
-
-      window.addEventListener("popstate", handlePopState);
-
       return () => {
         document.body.style.overflow = "";
-        window.removeEventListener("popstate", handlePopState);
       };
     }
   }, [isMobileMenuOpen]);
 
-  const handleCloseMenu = (href?: string) => {
-    if (window.history.state?.isMobileMenu) {
-      if (href) {
-        router.replace(href);
-      } else {
-        window.history.back();
-      }
-    } else if (href) {
-      router.push(href);
-    }
+  const handleCloseMenu = () => {
     setIsMobileMenuOpen(false);
   };
 
