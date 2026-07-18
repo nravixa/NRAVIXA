@@ -12,7 +12,7 @@ import ashqImg from "../images/Ashq.jpeg";
 
 const concepts = [
   {
-    title: "Brew & Bloom",
+    title: "Vohuman Cafe",
     category: "Concept Project",
     description: "An elegant, highly immersive digital experience designed for high-end boutique coffee shops.",
     alignLeft: true,

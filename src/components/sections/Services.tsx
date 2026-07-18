@@ -9,11 +9,13 @@ import cafeImg from "../images/cafe-website.jpg";
 import restaurantImg from "../images/hotel-website.jpg"; // Using hotel for restaurant as it's the available file
 import landingImg from "../images/landing-page.jpg";
 import portfolioImg from "../images/portfolio.jpg";
+import ecommerceImg from "../images/e-commerce.jpeg";
 
 const services = [
   { title: "Business Websites", image: businessImg.src },
   { title: "Cafe Websites", image: cafeImg.src },
   { title: "Restaurant Websites", image: restaurantImg.src },
+  { title: "E-commerce Websites", image: ecommerceImg.src },
   { title: "Landing Pages", image: landingImg.src },
   { title: "Portfolio Websites", image: portfolioImg.src },
 ];

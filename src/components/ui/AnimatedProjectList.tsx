@@ -17,8 +17,8 @@ interface AnimatedProjectListProps {
 export const AnimatedProjectList = memo(function AnimatedProjectList({ projects }: AnimatedProjectListProps) {
   // Animation variants
   const getVariants = (index: number) => {
-    // 0: Left, 1: Right, 2: Left, 3: Right, 4: Bottom
-    if (index === 4) {
+    const isLastCard = index === projects.length - 1 && projects.length % 2 !== 0;
+    if (isLastCard) {
       return {
         hidden: { opacity: 0, y: 100 },
         visible: { opacity: 1, y: 0 },
@@ -36,8 +36,8 @@ export const AnimatedProjectList = memo(function AnimatedProjectList({ projects 
     <div className="overflow-hidden w-full col-span-12">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-32">
         {projects.map((project, index) => {
-          // Center the 5th card in a 2-column grid
-          const isLastCard = index === 4;
+          // Center the last card in a 2-column grid if the total count is odd
+          const isLastCard = index === projects.length - 1 && projects.length % 2 !== 0;
           
           return (
             <motion.div

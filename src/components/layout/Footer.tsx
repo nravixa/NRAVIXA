@@ -38,7 +38,7 @@ export function Footer() {
             <div className="flex-1 text-center md:text-left text-white/40 text-sm">
               &copy; {new Date().getFullYear()} NRAVIXA. All rights reserved.
             </div>
-            
+
             {/* Socials Centered */}
             <div className="flex-1 flex justify-center my-16 md:my-0">
               <ul className="flex flex-row gap-24">

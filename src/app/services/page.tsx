@@ -1,7 +1,7 @@
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { Content } from "@/components/layout/Content";
-import { FlipCard } from "@/components/ui/FlipCard";
+import { BentoServices } from "@/components/sections/BentoServices";
 import { ScrollVelocity } from "@/components/ui/ScrollVelocity";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -10,41 +10,6 @@ export const metadata: Metadata = {
   title: "Services | NRAVIXA",
   description: "Digital Solutions That Help Businesses Grow. From stunning websites to complete digital solutions.",
 };
-
-const offerings = [
-  {
-    title: "Website Design",
-    desc: "Beautiful, modern, and user-friendly website designs that create a strong first impression and improve user experience.",
-  },
-  {
-    title: "Website Development",
-    desc: "Responsive, high-performance websites built using the latest technologies with clean, scalable code.",
-  },
-  {
-    title: "E-Commerce Development",
-    desc: "Launch your online store with secure payment integration, inventory management, and an exceptional shopping experience.",
-  },
-  {
-    title: "Responsive Design",
-    desc: "Every website is optimized for desktops, tablets, and smartphones to ensure a seamless experience across all devices.",
-  },
-  {
-    title: "Performance Optimization",
-    desc: "Improve loading speed, Core Web Vitals, SEO performance, and overall user satisfaction.",
-  },
-  {
-    title: "SEO Optimization",
-    desc: "Build websites that search engines love with optimized structure, metadata, and performance.",
-  },
-  {
-    title: "UI/UX Design",
-    desc: "Design experiences that are intuitive, engaging, and focused on customer conversion.",
-  },
-  {
-    title: "Website Maintenance",
-    desc: "Regular updates, backups, bug fixes, security monitoring, and ongoing technical support.",
-  },
-];
 
 const features = [
   "Custom Design",
@@ -95,34 +60,8 @@ export default function ServicesPage() {
         </Container>
       </Section>
 
-      {/* What We Offer Section */}
-      <Section className="bg-white">
-        <Container>
-          <Content>
-            <div className="col-span-12 mb-64 flex flex-col">
-              <span className="text-xs font-semibold tracking-[0.2em] uppercase text-black/40 mb-16">
-                Capabilities
-              </span>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-black">
-                What We Offer
-              </h2>
-            </div>
-            
-            <div className="col-span-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-32">
-              {offerings.map((offer, index) => (
-                <FlipCard
-                  key={offer.title}
-                  index={index}
-                  title={offer.title}
-                  frontText=""
-                  backTitle={offer.title}
-                  backText={offer.desc}
-                />
-              ))}
-            </div>
-          </Content>
-        </Container>
-      </Section>
+      {/* What We Offer Section - Redesigned premium Bento Grid */}
+      <BentoServices />
 
       {/* Why Choose Us & Technologies Section */}
       <Section className="bg-[#111] text-white">

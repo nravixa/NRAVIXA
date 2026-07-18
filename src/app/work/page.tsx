@@ -10,7 +10,6 @@ import businessWebsiteImg from "@/components/images/business-website.jpg";
 import portfolioImg from "@/components/images/portfolio.jpg";
 import ecommerceImg from "@/components/images/e-commerce.jpeg";
 import landingPageImg from "@/components/images/landing-page.jpg";
-import webAppImg from "@/components/images/web-application.jpeg";
 
 export const metadata: Metadata = {
   title: "Work | NRAVIXA",
@@ -37,11 +36,6 @@ const projects = [
     title: "Startup Landing Pages",
     desc: "High-converting landing pages built to launch products and attract customers.",
     image: landingPageImg.src,
-  },
-  {
-    title: "Custom Web Applications",
-    desc: "Tailored solutions built specifically around your business workflow and requirements.",
-    image: webAppImg.src,
   },
 ];
 
