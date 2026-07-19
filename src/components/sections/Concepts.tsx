@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Container } from "../layout/Container";
 import { Section } from "../layout/Section";
 import { Content } from "../layout/Content";
-import brewCafeImg from "../images/brew-cafe.jpeg";
+import vohumanCafeImg from "../images/Vohuman Cafe.jpeg";
 import modernHotelImg from "../images/modern-hotel.jpeg";
 import ashqImg from "../images/Ashq.jpeg";
 
@@ -16,8 +16,8 @@ const concepts = [
     category: "Concept Project",
     description: "An elegant, highly immersive digital experience designed for high-end boutique coffee shops.",
     alignLeft: true,
-    link: "https://brew-bloom-lime.vercel.app/",
-    image: brewCafeImg.src,
+    link: "#",
+    image: vohumanCafeImg.src,
   },
   {
     title: "Modern Restaurant Concept",

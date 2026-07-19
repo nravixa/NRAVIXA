@@ -14,32 +14,43 @@ interface BentoCardProps {
 
 const BentoCard = ({ title, description, glowColor, spanClass, index, children }: BentoCardProps) => {
   const cardRef = useRef<HTMLDivElement>(null);
+  const rectRef = useRef<DOMRect | null>(null);
+
+  const updateRect = () => {
+    if (cardRef.current) {
+      rectRef.current = cardRef.current.getBoundingClientRect();
+    }
+  };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+    if (!rectRef.current) updateRect();
+    if (!rectRef.current || !cardRef.current) return;
+    const x = e.clientX - rectRef.current.left;
+    const y = e.clientY - rectRef.current.top;
     cardRef.current.style.setProperty("--x", `${x}px`);
     cardRef.current.style.setProperty("--y", `${y}px`);
   };
 
+  const handleMouseLeave = () => {
+    rectRef.current = null;
+  };
+
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
+    updateRect();
+    if (!rectRef.current || !cardRef.current) return;
     const touch = e.touches[0];
-    const x = touch.clientX - rect.left;
-    const y = touch.clientY - rect.top;
+    const x = touch.clientX - rectRef.current.left;
+    const y = touch.clientY - rectRef.current.top;
     cardRef.current.style.setProperty("--x", `${x}px`);
     cardRef.current.style.setProperty("--y", `${y}px`);
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
+    if (!rectRef.current) updateRect();
+    if (!rectRef.current || !cardRef.current) return;
     const touch = e.touches[0];
-    const x = touch.clientX - rect.left;
-    const y = touch.clientY - rect.top;
+    const x = touch.clientX - rectRef.current.left;
+    const y = touch.clientY - rectRef.current.top;
     cardRef.current.style.setProperty("--x", `${x}px`);
     cardRef.current.style.setProperty("--y", `${y}px`);
   };
@@ -80,6 +91,7 @@ const BentoCard = ({ title, description, glowColor, spanClass, index, children }
       whileHover="hover"
       whileTap="tap"
       onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       className={`group relative overflow-hidden rounded-[24px] border border-white/[0.08] bg-[#0a0a0a]/60 backdrop-blur-xl p-32 flex flex-col justify-between cursor-pointer transition-colors duration-300 w-full ${spanClass}`}
